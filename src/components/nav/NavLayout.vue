@@ -6,12 +6,12 @@
           {{main.title}}
         </a>
         <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
+          <i class="bi bi-list"></i>
         </button>
         <div class="navbar-collapse collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item mx-0 mx-lg-1"
-              v-for="(item, i) in items"
+              v-for="(item, i) in main"
               :key="i"
             >
               <a class="nav-link" href="#" @click="onNavRouterHandler($event, item.name)">{{item.title}}</a>
@@ -28,6 +28,10 @@
 </template>
 
 <style>
+  #mainNav .navbar-toggler {
+    padding: 0.3rem 0.8rem !important;
+    font-size: x-large !important;
+  }
 </style>
 
 <script>
@@ -40,10 +44,7 @@ export default {
       main: {
         title: '운쿠', name: 'home'
       },
-      items: [
-        { title: 'About', name: 'about' },
-      ],
-      right: null
+      right: null,
     }
   },
   methods: {

@@ -9,6 +9,8 @@ import axios from 'axios'
 
 import '@/assets/css/styles.css'
 import '@/assets/css/main.css'
+import 'bootstrap-icons/font/bootstrap-icons.css'
+
 
 Vue.use(Bootstrap)
 Vue.prototype.$axios = axios

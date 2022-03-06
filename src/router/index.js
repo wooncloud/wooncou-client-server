@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import axios from 'axios'
+
+// componenets
 import HomeView from '../views/HomeView.vue'
-import AboutView from '../views/AboutView.vue'
 import AdminLogin from '../views/admin/AdminLogin.vue'
 import AdminDashBoard from '../views/admin/AdminDashBoard.vue'
-import axios from 'axios'
+import NotFound from '../components/error/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -13,11 +15,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: AboutView
   },
   {
     path: '/admin/login',
@@ -60,7 +57,12 @@ const routes = [
           next({ path: '/admin/login' })
         })
     }
-  }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: "notFound",
+    component: NotFound
+  },
 ]
 
 const router = new VueRouter({
