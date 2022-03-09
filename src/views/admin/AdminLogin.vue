@@ -63,12 +63,12 @@ export default {
     onSubmitHandler (e) {
       e.preventDefault()
 
-      const ddd = {
+      const data = {
         email: this.email,
         password: this.pw
       }
 
-      this.$axios.post('/api/users/login', ddd)
+      this.$axios.post('/api/users/login', data)
         .then(response => {
           if (response.status === 200) {
             if (response.data.loginSuccess) {
