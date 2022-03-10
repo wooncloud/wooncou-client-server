@@ -4,7 +4,8 @@ import axios from 'axios'
 
 // componenets
 import HomeView from '../views/HomeView.vue'
-import List from '../views/List.vue'
+import PostList from '../views/PostList.vue'
+import Report from '../views/Report.vue'
 import Detail from '../views/Detail.vue'
 import Goldbox from '../views/Goldbox.vue'
 import AdminLogin from '../views/admin/AdminLogin.vue'
@@ -48,10 +49,15 @@ const routes = [
       checkToken(next)
     }
   },
+  { // 문의
+    path: '/report',
+    name: 'report',
+    component: Report,
+  },
   { // 리스트
     path: '/list/:tag',
-    name: 'list',
-    component: List,
+    name: 'postList',
+    component: PostList,
   },
   { // 게시글
     path: '/detail/:id',
