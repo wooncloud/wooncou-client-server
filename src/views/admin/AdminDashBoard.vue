@@ -5,7 +5,7 @@
 				<AdminPostList />
 			</div>
 			<div class="manage-container col-lg-8">
-				<!-- 컴포넌트 --> 컴포넌트
+				<AdminPostDetail />
 			</div>
 		</div>
 		<div class="manage-warp row">
@@ -21,6 +21,7 @@
 
 <script>
 import AdminPostList from "@/components/admin/AdminPostList.vue"
+import AdminPostDetail from "@/components/admin/AdminPostDetail.vue"
 
 export default {
 	name: 'AdminDashBoard',
@@ -31,6 +32,7 @@ export default {
 	},
 	components: {
 		AdminPostList,
+		AdminPostDetail,
 	}
 }
 </script>

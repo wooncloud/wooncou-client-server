@@ -1,3 +1,27 @@
+input:focus, select:focus, option:focus, textarea:focus, button:focus{
+	outline: none;
+}
+
 .h-100vh {
 	height: 100vh !important;
+}
+
+input, div {
+	transition: all 0.1s ease-out;
+}
+
+
+/* quill */
+.ql-toolbar.ql-snow {
+	border: 0 !important;
+	border-top: 1px solid lightgray !important;
+	border-bottom: 1px solid lightgray !important;
+}
+
+.ql-container.ql-snow {
+	border: 0 !important;
+}
+
+.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
+	margin-top: -9px !important;
 }
