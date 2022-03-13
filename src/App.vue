@@ -18,7 +18,7 @@
   .main-container {
     position: relative;
     height: 100%;
-    margin-top: 95px;
+    margin: 95px 0 0 0;
   }
 
   @media (min-width: 992px) {

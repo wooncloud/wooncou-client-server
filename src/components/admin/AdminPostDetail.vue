@@ -1,8 +1,13 @@
 <template>
-	<div class="post-detail-container">
+	<div class="post-detail-container h-100">
 		<div class="post-detail-controller bg-secondary text-white">
-			<div class="coupang-api-controller">
-				api 자리
+			<div class="input-group coupang-api-controller w-50">
+				<select class="form-select form-select-sm">
+					<option value="search">검색</option>
+					<option value="url">URL</option>
+				</select>
+				<input class="form-control form-control-sm w-50" type="text" placeholder="쿠팡 파트너스 검색...">
+				<input type="button" value="검색" class="btn btn-sm btn-dark">
 			</div>
 			<div class="btn-group editor-controller" role="group" aria-label="Basic mixed styles example">
 				<button type="button" class="btn btn-sm btn-warning"><i class="bi bi-save2"></i> 임시저장</button>
@@ -34,7 +39,8 @@ export default {
 				theme: 'snow',
 				placeholder: '내용을 입력하세요...',
 				readOnly: true,
-			}
+			},
+			content: null
 		}
 	},
 	beforeCreate() {
@@ -51,9 +57,6 @@ export default {
 			console.log('editor ready!', editor)
 		}
 	},
-	components: {
-
-	}
 }
 </script>
 
@@ -61,13 +64,18 @@ export default {
 	.post-detail-container {
 		border: 1px solid lightgray;
 		border-radius: 4px;
-		height: 500px;
 	}
 
 	.post-detail-controller {
 		padding: 8px 12px;
 		border-bottom: 1px solid lightgray;
 		background-color: whitesmoke;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.coupang-api-controller {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;

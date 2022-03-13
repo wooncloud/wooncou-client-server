@@ -1,5 +1,5 @@
 <template>
-	<div class="post-list-container">
+	<div class="post-list-container h-100">
 		<div class="post-list-controller bg-secondary text-white">
 			<button type="button" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i></button>
 			<input class="form-control form-control-sm" type="text" placeholder="search..." style="width: 150px;"
@@ -39,7 +39,9 @@ export default {
 
 			this.$axios.delete('/api/post', {data: data})
 			.then(res => { 
-				console.log(res.data);
+				if (res.data.success) {
+					this.$toast.success('변경이 완료되었습니다.')
+				}
 			})
 			.catch(e => {console.log(e)})
 		},
@@ -76,7 +78,6 @@ export default {
 	.post-list-container {
 		border: 1px solid lightgray;
 		border-radius: 4px;
-		height: 500px;
 	}
 
 	.post-list-controller {
