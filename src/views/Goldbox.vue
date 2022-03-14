@@ -1,5 +1,5 @@
 <template>
-  
+  <h1>골드박스 페이지 입니다.</h1>
 </template>
 
 <script>

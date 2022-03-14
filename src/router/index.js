@@ -55,8 +55,8 @@ const routes = [
     component: Report,
   },
   { // 리스트
-    path: '/list/:tag',
-    name: 'postList',
+    path: '/posts/:tag',
+    name: 'posts',
     component: PostList,
   },
   { // 게시글

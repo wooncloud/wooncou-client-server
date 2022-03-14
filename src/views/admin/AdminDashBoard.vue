@@ -16,6 +16,9 @@
 				<AdminReportDetail />
 			</div>
 		</div>
+		<div>
+			<AdminPostModal />
+		</div>
 	</div>
 </template>
 
@@ -24,6 +27,7 @@ import AdminPostList from "@/components/admin/AdminPostList.vue"
 import AdminPostDetail from "@/components/admin/AdminPostDetail.vue"
 import AdminReportList from "@/components/admin/AdminReportList.vue"
 import AdminReportDetail from "@/components/admin/AdminReportDetail.vue"
+import AdminPostModal from "@/components/admin/AdminPostModal.vue"
 
 export default {
 	name: 'AdminDashBoard',
@@ -36,6 +40,7 @@ export default {
 		AdminPostDetail,
 		AdminReportList,
 		AdminReportDetail,
+		AdminPostModal,
 	}
 }
 </script>

@@ -28,7 +28,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 html::-webkit-scrollbar-track {
-	background-color: lightgray;
+	background-color: transparent;
 }
 
 
@@ -43,7 +43,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 div::-webkit-scrollbar-track {
-	background-color: white;
+	background-color: transparent;
 }
 
 /* quill */

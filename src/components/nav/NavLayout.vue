@@ -80,7 +80,7 @@
           title: '운쿠', name: 'home'
         },
         menus: [
-          {name: "list", title: "추천목록 보기"},
+          {name: "posts", title: "추천목록 보기"},
           {name: "tags", title: "태그 목록"},
           {name: "goldbox", title: "골드박스"},
           {name: "report", title: "문의"},

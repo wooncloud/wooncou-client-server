@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "dev": "npm run serve"
+    "dev": "npm run serve",
+    "dist": "serve -s dist",
+    "deploy": "firebase deploy"
   },
   "author": "wooncloud",
   "license": "ISC",
