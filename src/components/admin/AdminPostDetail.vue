@@ -2,12 +2,12 @@
 	<div class="post-detail-container h-100">
 		<div class="post-detail-controller bg-secondary text-white">
 			<div class="input-group coupang-api-controller w-50">
-				<select class="form-select form-select-sm">
-					<option value="search">검색</option>
+				<select class="form-select form-select-sm" v-model="coupang.type">
 					<option value="url">URL</option>
+					<option value="search">검색</option>
 				</select>
-				<input class="form-control form-control-sm w-50" type="text" placeholder="쿠팡 파트너스 검색...">
-				<input type="button" value="검색" class="btn btn-sm btn-dark">
+				<input class="form-control form-control-sm w-50" type="text" placeholder="쿠팡 파트너스 검색..." v-model="coupang.value">
+				<input type="button" value="검색" class="btn btn-sm btn-dark" @click="coupangSearch()">
 			</div>
 			<div class="btn-group editor-controller" role="group" aria-label="Basic mixed styles example">
 				<button type="button" class="btn btn-sm btn-warning"><i class="bi bi-save2"></i> 임시저장</button>
@@ -20,7 +20,7 @@
 		<div class="post-detail-editor">
 			<quill-editor
 				ref="editor"
-				v-model="content"
+				v-model="post.content"
 				:options="editorOption"
 				@blur="onEditorBlur($event)"
 				@focus="onEditorFocus($event)"
@@ -40,7 +40,25 @@ export default {
 				placeholder: '내용을 입력하세요...',
 				readOnly: true,
 			},
-			content: null
+			post: {},
+			coupang: {
+				type: "url",
+				value: ""
+			}
+		}
+	},
+	props: {
+		selectedPostId: String,
+	},
+	watch: {
+		selectedPostId() {
+			this.$axios.get(`/api/post?id=${this.selectedPostId}`)
+			.then(res => {
+				this.post = res.data.posts;
+			})
+			.catch(e => {
+				console.log(e);
+			})
 		}
 	},
 	beforeCreate() {
@@ -55,6 +73,14 @@ export default {
 		},
 		onEditorReady(editor) {
 			console.log('editor ready!', editor)
+		},
+		coupangSearch: function() {
+			const httpRegex = new RegExp(/^http\w:\/\//, 'ig');
+			if(this.coupang.type === "search" && httpRegex.test(this.coupang.value)) {
+				this.coupang.type = "url";
+			}
+
+			this.$emit("sendCoupangApiData", this.coupang);
 		}
 	},
 }

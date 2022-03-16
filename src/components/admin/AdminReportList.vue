@@ -1,7 +1,7 @@
 <template>
 <div class="report-list-container h-100">
   <div class="report-element" v-for="(report, index) in reportList" :key="index" :data-idx="`${index}`" :data-id="`${report._id}`">
-    <a href="#" style="width:60%">{{report.title}}</a>
+    <a href="#" style="width:60%" @click="sendReportId($event, report._id)">{{report.title}}</a>
     <div style="width:32%">{{new Date(report.report_date).toLocaleDateString()}}</div>
     <div style="width:8%">
       <div v-if="reportList[index].complete_date !== null"><i class="bi bi-check-lg"></i></div>
@@ -16,6 +16,12 @@ export default {
   data() {
     return {
       reportList: null,
+    }
+  },
+  methods: {
+    sendReportId: function(e, id) {
+      e.preventDefault();
+      this.$emit('sendReportId', id);
     }
   },
   beforeCreate() {

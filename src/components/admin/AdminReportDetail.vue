@@ -2,29 +2,28 @@
 	<div class="report-detail-container h-100">
 		<div class="report-title">
 			<div class="d-flex ellipsis" style="width: 90%">
-				Lorem ipsum dolor sit amet, co
+				{{title}}
 			</div>
 			<div class="d-flex justify-content-end" style="width: 10%">
-				<input v-if="true" class="btn btn-sm btn-primary" type="button" value="완료" @click="completeReport">
-				<div v-else><i class="bi bi-check-lg"></i></div>
+				<input v-if="isCanComplete" class="btn btn-sm btn-primary" type="button" value="완료" @click="completeReport">
 			</div>
 		</div>
 		<div class="report-content">
 			<div class="report-info d-flex justify-content-between">
 				<div class="report-user">
-					<span class="me-2 badge bg-primary">작성자</span>타키온세이버
+					<span class="me-2 badge bg-primary">작성자</span>{{userName}}
 				</div>
 				<div class="report-email">
-					<span class="me-2 badge bg-primary">이메일</span>dntjdgh02@gmail.com
+					<span class="me-2 badge bg-primary">이메일</span>{{userEmail}}
 				</div>
 				<div class="report-regdate">
-					<span class="me-2 badge bg-secondary">작성일</span>2022-03-13 07:58:22
+					<span class="me-2 badge bg-secondary">작성일</span>{{reportDate}}
 				</div>
 				<div class="report-compdate">
-					<span class="me-2 badge bg-secondary">완료일</span>2022-03-13 08:06:14
+					<span class="me-2 badge bg-secondary">완료일</span>{{completeDate}}
 				</div>
 			</div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget aliquet nibh praesent. In hac habitasse platea dictumst quisque sagittis purus. Pulvinar elementum integer enim neque volutpat ac.</p><p>Senectus et netus et malesuada. Nunc pulvinar sapien et ligula ullamcorper malesuada proin. Neque convallis a cras semper auctor. Libero id faucibus nisl tincidunt eget. Leo a diam sollicitudin tempor id. A lacus vestibulum sed arcu non odio euismod lacinia. In tellus integer feugiat scelerisque. Feugiat in fermentum posuere urna nec tincidunt praesent. Porttitor rhoncus dolor purus non enim praesent elementum facilisis. Nisi scelerisque eu ultrices vitae auctor eu augue ut lectus. Ipsum faucibus vitae aliquet nec ullamcorper sit amet risus. Et malesuada fames ac turpis egestas sed. Sit amet nisl suscipit adipiscing bibendum est ultricies. Arcu ac tortor dignissim convallis aenean et tortor at. Pretium viverra suspendisse potenti nullam ac tortor vitae purus. Eros donec ac odio tempor orci dapibus ultrices. Elementum nibh tellus molestie nunc. Et magnis dis parturient montes nascetur. Est placerat in egestas erat imperdiet. Consequat interdum varius sit amet mattis vulputate enim.</p><p>Sit amet nulla facilisi morbi tempus. Nulla facilisi cras fermentum odio eu. Etiam erat velit scelerisque in dictum non consectetur a erat. Enim nulla aliquet porttitor lacus luctus accumsan tortor posuere. Ut sem nulla pharetra diam. Fames ac turpis egestas maecenas. Bibendum neque egestas congue quisque egestas diam. Laoreet id donec ultrices tincidunt arcu non sodales neque. Eget felis eget nunc lobortis mattis aliquam faucibus purus. Faucibus interdum posuere lorem ipsum dolor sit.</p>
+			{{content}}
 		</div>
 	</div>
 </template>
@@ -34,17 +33,43 @@ export default {
 	name: "AdminReportDetail",
 	data() {
 		return {
-
+			title: "",
+			content: "",
+			userName: "",
+			userEmail: "",
+			reportDate: "",
+			completeDate: "",
+			isCanComplete: false,
+		}
+	},
+	props: {
+		selectedReportId: String
+	},
+	watch: {
+		selectedReportId() {
+			this.$axios.get(`/api/report/${this.selectedReportId}`)
+			.then(res => {
+				this.title = res.data.report.title;
+				this.content = res.data.report.content;
+				this.userName = res.data.report.user_name;
+				this.userEmail = res.data.report.user_email;
+				this.reportDate = new Date(res.data.report.report_date).toLocaleString();
+				this.isCanComplete = res.data.report.complete_date === null;
+				this.completeDate = this.isCanComplete
+				? "----. -. --. -- --:--:--" 
+				: this.completeDate = new Date(res.data.report.complete_date).toLocaleString();
+			})
+			.catch(e => {
+				console.log(e);
+			})
 		}
 	},
 	methods: {
     completeReport(e) {
-			const reportId = e.target.closest(".report-element").dataset.id;
-			const index = e.target.closest(".report-element").dataset.idx;
-      this.$axios.put('/api/report', { id: reportId })
+      this.$axios.put('/api/report', { id: this.selectedReportId })
         .then(res => {
           if (res.data.success) {
-						this.reportList[index].complete_date = res.data.date
+						this.isCanComplete = false;
 						this.$toast.success('변경이 완료되었습니다.')
           }
         })

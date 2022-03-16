@@ -2,22 +2,29 @@
 	<div class="admin-dashbord-container container h-100">
 		<div class="manage-warp row" style="height: 70%">
 			<div class="manage-container col-4 h-100">
-				<AdminPostList />
+				<AdminPostList @sendPostId="setSelectedPostId" />
 			</div>
 			<div class="manage-container col-8 h-100">
-				<AdminPostDetail />
+				<AdminPostDetail 
+					:selectedPostId="selectedPostId"
+					@sendCoupangApiData="setCoupangApiSearchData"
+				/>
 			</div>
 		</div>
 		<div class="manage-warp row" style="height: 25%">
 			<div class="manage-container col-4 h-100">
-				<AdminReportList />
+				<AdminReportList @sendReportId="setSelectedReportId" />
 			</div>
 			<div class="manage-container col-8 h-100">
-				<AdminReportDetail />
+				<AdminReportDetail :selectedReportId="selectedReportId" />
 			</div>
 		</div>
 		<div>
-			<AdminPostModal />
+			<AdminPostModal 
+				:modalOpen="modalOpen" 
+				:apiSearchData="apiSearchData" 
+				@closeModal="modalOpen=false"
+			/>
 		</div>
 	</div>
 </template>
@@ -31,8 +38,24 @@ import AdminPostModal from "@/components/admin/AdminPostModal.vue"
 
 export default {
 	name: 'AdminDashBoard',
-	data: () => {
+	data() {
 		return {
+			modalOpen: false,
+			selectedPostId: null,
+			selectedReportId: null,
+			apiSearchData: null,
+		}
+	},
+	methods: {
+		setSelectedPostId(postId) {
+			this.selectedPostId = postId;
+		},
+		setSelectedReportId(reportId) {
+			this.selectedReportId = reportId;
+		},
+		setCoupangApiSearchData(data) {
+			this.apiSearchData = data;
+			this.modalOpen = true;
 		}
 	},
 	components: {

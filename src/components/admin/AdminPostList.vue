@@ -7,7 +7,7 @@
 		</div>
 		<div class="post-list-wrap">
 			<div class="post-element" v-for="(post, index) in postList" :key="index" :data-id="`${post._id}`">
-				<a href="#" style="width:55%">{{post.title}}</a>
+				<a href="#" style="width:55%" @click="sendPostId($event, post._id)">{{post.title}}</a>
 				<div style="width:35%">{{new Date(post.date).toLocaleDateString()}}</div>
 				<div style="width:10%" class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" role="switch" :id="`deleted-${post._id}`" :checked="getPostDeleteCheck(post.deleted)" @change="setPostDeleteCheck">
@@ -62,6 +62,10 @@ export default {
 				})
 				.catch(e => {console.log(e)})
 			}
+		},
+		sendPostId: function(e, id) {
+			e.preventDefault();
+			this.$emit('sendPostId', id)
 		}
 	},
 	beforeCreate() {
