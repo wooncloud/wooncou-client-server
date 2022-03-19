@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import Quill from 'quill'
 export default {
 	name: "AdminPostDetail",
 	data: () => {
@@ -40,7 +41,9 @@ export default {
 				placeholder: '내용을 입력하세요...',
 				readOnly: true,
 			},
-			post: {},
+			post: {
+				content:""
+			},
 			coupang: {
 				type: "url",
 				value: ""
@@ -81,6 +84,9 @@ export default {
 			}
 
 			this.$emit("sendCoupangApiData", this.coupang);
+		},
+		getModalHtml(html) {
+			this.post.content += html;
 		}
 	},
 }

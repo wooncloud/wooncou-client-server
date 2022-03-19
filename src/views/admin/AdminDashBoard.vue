@@ -7,6 +7,7 @@
 			<div class="manage-container col-8 h-100">
 				<AdminPostDetail 
 					:selectedPostId="selectedPostId"
+					ref="AdminPostDetail"
 					@sendCoupangApiData="setCoupangApiSearchData"
 				/>
 			</div>
@@ -21,9 +22,9 @@
 		</div>
 		<div>
 			<AdminPostModal 
-				:modalOpen="modalOpen" 
 				:apiSearchData="apiSearchData" 
-				@closeModal="modalOpen=false"
+				@sendModalHtml="setModalHtml"
+				ref="refModal"
 			/>
 		</div>
 	</div>
@@ -40,10 +41,10 @@ export default {
 	name: 'AdminDashBoard',
 	data() {
 		return {
-			modalOpen: false,
 			selectedPostId: null,
 			selectedReportId: null,
 			apiSearchData: null,
+			modalHtml: null,
 		}
 	},
 	methods: {
@@ -54,8 +55,17 @@ export default {
 			this.selectedReportId = reportId;
 		},
 		setCoupangApiSearchData(data) {
+			if(!data.value) {
+				this.$toast.warning("내용을 입력하세요.");
+				return;
+			}
 			this.apiSearchData = data;
-			this.modalOpen = true;
+			this.$refs.refModal.searchCoupangData();
+		},
+		setModalHtml(html) {
+			this.modalHtml = html;
+			this.$refs.AdminPostDetail.getModalHtml(html);
+			this.modalHtml = null;
 		}
 	},
 	components: {
