@@ -1,2 +1,21 @@
-# wooncou
-운쿠 클라이언트 서버
+# Wooncou
+
+The wooncloud's personal project
+
+wooncou client server
+
+# Env
+
+- vuejs 3
+- firebase host
+- mongodb
+- bootstrap
+
+# connect
+
+- Wooncou api server
+- [Coupang partners api](https://partners.coupang.com/)
+
+# Site
+
+[Go to wooncou](https://wooncou.web.app/)
