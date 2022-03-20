@@ -16,6 +16,9 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 
+// XSS filter
+import sanitizeHtml from 'sanitize-html'
+
 import '@/assets/css/styles.css'
 import '@/assets/css/main.css'
 
@@ -40,6 +43,7 @@ toastr.options = {
 Vue.use(Bootstrap)
 Vue.prototype.$axios = axios
 Vue.prototype.$toast = toastr
+Vue.prototype.$sanitize = sanitizeHtml
 Vue.use(VueQuillEditor)
 
 Vue.config.productionTip = false
