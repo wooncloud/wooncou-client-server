@@ -33,7 +33,36 @@
 					</p>
 				</div>
 				<div id="searchRanking" class="search-ranking" v-if="searchRankingItems !== null">
-
+					<div id="nonePostData" class="rank-summary">
+						<div class="rank-summary-item" v-for="(p, i) in searchRankingItems.data.data.productData" :key="i">
+							<div class="rank-summary-item-rank">{{p.rank}}</div>
+							<a :href="`${p.productUrl}`" target="_blank">
+								<img :src="p.productImage" :alt="p.productName">
+							</a>
+							<a :href="`${p.productUrl}`" target="_blank">
+								<span class="fs-6">{{p.productName}}</span>
+							</a>
+							<span class="fs-5 fw-bold">{{p.productPrice ? parseInt(p.productPrice).toLocaleString("ko-KR") : 0}}원</span>
+						</div>
+					</div>
+					<div id="postData" class="post-data ql-editor">
+						<div class="ranking-post-item" v-for="(p, i) in searchRankingItems.data.data.productData" :key="i">
+							<p class="ql-align-center">
+								<a :href="`${p.productUrl}`" target="_blank">
+									<img :src="`${p.productImage}`" style="width: 100%;">
+								</a>
+							</p>
+							<p class="ql-align-center">
+								<a :href="`${p.productUrl}`" target="_blank" class="ql-size-large" style="color: rgb(102, 185, 102);">
+									<strong>{{p.rank}}. {{p.productName}}</strong>
+								</a>
+							</p>
+							<p class="ql-align-center">
+								<strong class="ql-size-large">{{p.productPrice ? parseInt(p.productPrice).toLocaleString("ko-KR") : 0}}원</strong>
+							</p>
+							<p></p>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -94,6 +123,8 @@ export default {
 						this.$toast.error(res.data.message); return;
 					}
 
+					this.searchRankingItems = res.data.data;
+					this.modalOpen = true;
 					console.log(res.data.data);
 				})
 				.catch(e => { console.log(e); })
@@ -110,7 +141,12 @@ export default {
 				this.sendHtml = document.getElementById("deeplink").innerHTML;
 			}
 			if(this.searchRankingItems !== null) {
-				this.sendHtml = document.getElementById("searchRanking").innerHTML;
+				let sendHtml = "";
+				const items = document.querySelectorAll("#searchRanking > #postData > .ranking-post-item");
+				items.forEach((e) => {
+					sendHtml += e.innerHTML;
+				});
+				this.sendHtml = sendHtml
 			}
 			this.$emit('sendModalHtml', this.sendHtml)
 			this.closeModal();
@@ -120,7 +156,52 @@ export default {
 </script>
 
 <style>
+.admin-dashbord-container .modal-body {
+	max-height: 400px;
+	overflow: hidden auto;
+}
+
 .deeplink img {
 	width: 100%;
+}
+
+.rank-summary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: space-around;
+}
+
+.rank-summary-item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	width: 190px;
+	margin: 5px;
+	padding: 	5px;
+	border: 1px solid lightgray;
+	border-radius: 4px;
+	text-align: center;
+}
+.rank-summary-item > a > img {
+	width: 100%;
+}
+.rank-summary-item > .rank-summary-item-rank {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 30px;
+	height: 30px;
+	background-color: var(--bs-secondary);
+	border-radius: 2px 0 0 0;
+	color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
 }
 </style>

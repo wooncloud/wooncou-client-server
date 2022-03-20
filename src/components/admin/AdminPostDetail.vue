@@ -10,12 +10,14 @@
 				<input type="button" value="검색" class="btn btn-sm btn-dark" @click="coupangSearch()">
 			</div>
 			<div class="btn-group editor-controller" role="group" aria-label="Basic mixed styles example">
-				<button type="button" class="btn btn-sm btn-warning"><i class="bi bi-save2"></i> 임시저장</button>
-				<button type="button" class="btn btn-sm btn-primary"><i class="bi bi-plus"></i> 저장</button>
+				<button type="button" class="btn btn-sm btn-light" @click="addTag"><i class="bi bi-tag-fill"></i> 태그추가</button>
+				<button type="button" class="btn btn-sm btn-warning" @click="postTempSave"><i class="bi bi-save2"></i> 임시저장</button>
+				<button type="button" class="btn btn-sm btn-primary" @click="postSave" v-if="true"><i class="bi bi-send-fill"></i> 발행</button>
+				<button type="button" class="btn btn-sm btn-primary" @click="postSave" v-if="false"><i class="bi bi-pencil-square"></i> 수정</button>
 			</div>
 		</div>
 		<div class="post-detail-title">
-			<input type="text" class="post-title" placeholder="제목을 입력하세요">
+			<input type="text" class="post-title" placeholder="제목을 입력하세요" v-model="post.title">
 		</div>
 		<div class="post-detail-editor">
 			<quill-editor
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-import Quill from 'quill'
+
 export default {
 	name: "AdminPostDetail",
 	data: () => {
@@ -42,6 +44,7 @@ export default {
 				readOnly: true,
 			},
 			post: {
+				title: "",
 				content:""
 			},
 			coupang: {
@@ -55,6 +58,10 @@ export default {
 	},
 	watch: {
 		selectedPostId() {
+			if(this.post.title || this.post.content) {
+				if (!confirm("작성중인 글이 모두 지워집니다.\n계속 하시겠습니까?")) return;
+			}
+
 			this.$axios.get(`/api/post?id=${this.selectedPostId}`)
 			.then(res => {
 				this.post = res.data.posts;
@@ -87,6 +94,30 @@ export default {
 		},
 		getModalHtml(html) {
 			this.post.content += html;
+		},
+		getPostDate() {
+			// title sanitize
+			this.post.title = this.$sanitize(this.post.title);
+			if (!this.post.title) {
+				this.$toast.error("제목을 입력하세요.");
+				return;
+			} else if (!this.post.content) {
+				this.$toast.error("내용을 입력하세요.");
+				return;
+			}
+
+			console.log(this.post);
+		},
+		postTempSave() {
+			this.getPostDate();
+			// api 서버로 보내기
+		},
+		postSave() {
+			this.getPostDate();
+			// api 서버로 보내기
+		},
+		addTag() {
+			console.log("add tag");
 		}
 	},
 }

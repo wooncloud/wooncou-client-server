@@ -1,6 +1,14 @@
 <template>
 	<div class="admin-dashbord-container container h-100">
-		<div class="manage-warp row" style="height: 70%">
+		<ul class="nav nav-tabs">
+			<li class="nav-item">
+				<a :class="`fw-bold nav-link ${tabIndex === 1 ? 'active' : ''}`" @click="tabIndex = 1" href="#">포스팅</a>
+			</li>
+			<li class="nav-item">
+				<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
+			</li>
+		</ul>
+		<div class="manage-warp row" v-if="tabIndex === 1">
 			<div class="manage-container col-4 h-100">
 				<AdminPostList @sendPostId="setSelectedPostId" />
 			</div>
@@ -12,7 +20,7 @@
 				/>
 			</div>
 		</div>
-		<div class="manage-warp row" style="height: 25%">
+		<div class="manage-warp row" v-if="tabIndex === 2">
 			<div class="manage-container col-4 h-100">
 				<AdminReportList @sendReportId="setSelectedReportId" />
 			</div>
@@ -40,6 +48,7 @@ export default {
 	name: 'AdminDashBoard',
 	data() {
 		return {
+			tabIndex: 1,
 			selectedPostId: null,
 			selectedReportId: null,
 			modalHtml: null,
@@ -82,6 +91,7 @@ export default {
 
 	.manage-warp {
 		margin: 10px 0;
+		height: calc(100% - 60px);
 		justify-content: space-between;
 	}
 
