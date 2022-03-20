@@ -145,7 +145,7 @@ export default {
 		position: relative;
 	}
 
-	.ql-editor {
-		height: calc( 100% - 42px ) !important;
+	.ql-container {
+		height: calc( 100% - 68px ) !important;
 	}
 </style>

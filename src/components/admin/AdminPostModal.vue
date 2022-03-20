@@ -57,20 +57,19 @@ export default {
 		}
 	},
 	props: {
-		apiSearchData: Object,
 	},
 	methods: {
-		searchCoupangData: function () {
-			if (!this.apiSearchData.type || !this.apiSearchData.value) {
+		searchCoupangData: function (searchData) {
+			if (!searchData.type || !searchData.value) {
 				this.$toast.error("입력값이 잘못되었습니다.");
 			}
 
-			if (this.apiSearchData.type === "search") {
+			if (searchData.type === "search") {
 				this.modalTitle = "랭킹 검색";
-				this.getSearchRanking(this.apiSearchData.value);
-			} else if (this.apiSearchData.type === "url") {
+				this.getSearchRanking(searchData.value);
+			} else if (searchData.type === "url") {
 				this.modalTitle = "딥링크 생성";
-				this.getDeeplink(this.apiSearchData.value);
+				this.getDeeplink(searchData.value);
 			}
 		},
 		// 딥링크

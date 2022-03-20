@@ -22,7 +22,6 @@
 		</div>
 		<div>
 			<AdminPostModal 
-				:apiSearchData="apiSearchData" 
 				@sendModalHtml="setModalHtml"
 				ref="refModal"
 			/>
@@ -43,7 +42,6 @@ export default {
 		return {
 			selectedPostId: null,
 			selectedReportId: null,
-			apiSearchData: null,
 			modalHtml: null,
 		}
 	},
@@ -59,8 +57,7 @@ export default {
 				this.$toast.warning("내용을 입력하세요.");
 				return;
 			}
-			this.apiSearchData = data;
-			this.$refs.refModal.searchCoupangData();
+			this.$refs.refModal.searchCoupangData(data);
 		},
 		setModalHtml(html) {
 			this.modalHtml = html;
