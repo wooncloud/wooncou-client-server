@@ -5,6 +5,7 @@
       <router-view />
     </main>
     <footerLayout />
+    <loadingSpinner v-if="$store.state.isLoading === true" />
   </div>
 </template>
 
@@ -31,14 +32,18 @@
 <script>
 import navLayout from '@/components/nav/NavLayout.vue'
 import footerLayout from '@/components/footer/FooterLayout.vue'
+import loadingSpinner from '@/components/common/LoadingSpinner.vue'
 
 export default {
   name: 'App',
+  data() {
+		return {
+    }
+  },
   components: {
     navLayout,
-    footerLayout
+    footerLayout,
+    loadingSpinner
   },
-  data: () => ({
-  })
 }
 </script>

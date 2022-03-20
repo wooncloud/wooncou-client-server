@@ -2,7 +2,9 @@
   <footer class="footer mt-auto py-3 bg-light">
     <div class="container">
       <div>
-        <span class="text-muted">Email : wooncloud@hotmail.co.kr</span>
+        <span class="text-muted">
+          <i class="bi bi-envelope-fill"></i> Email : wooncloud@hotmail.co.kr
+        </span>
       </div>
       <div>
         <span class="text-muted">&copy; {{ new Date().getFullYear() }} wooncloud all rights reserved.</span>

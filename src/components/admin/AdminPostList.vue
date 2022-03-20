@@ -9,6 +9,7 @@
 			<div class="post-element" v-for="(post, index) in postList" :key="index" :data-id="`${post._id}`">
 				<a href="#" style="width:55%" @click="sendPostId($event, post._id)">{{post.title}}</a>
 				<div style="width:35%">{{new Date(post.date).toLocaleDateString()}}</div>
+				<span class="me-2 text-muted"><i class="bi bi-archive-fill" v-if="post.temp"></i></span>
 				<div style="width:10%" class="form-check form-switch">
 					<input class="form-check-input" type="checkbox" role="switch" :id="`deleted-${post._id}`" :checked="getPostDeleteCheck(post.deleted)" @change="setPostDeleteCheck">
 					<label class="form-check-label" :for="`deleted-${post._id}`"></label>

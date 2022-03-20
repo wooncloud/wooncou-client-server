@@ -72,7 +72,8 @@ export default {
         .then(response => {
           if (response.status === 200) {
             if (response.data.loginSuccess) {
-              localStorage.setItem('accessToken', response.data.userId)
+              localStorage.setItem('accessToken', response.data.userId);
+              localStorage.setItem('userName', response.data.userName);
               this.$router.push({ name: 'admin' })
             } else {
               alert(response.data.message)

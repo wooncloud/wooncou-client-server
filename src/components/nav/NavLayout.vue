@@ -37,39 +37,6 @@
   </header>
 </template>
 
-<style>
-  #mainNav .navbar-toggler {
-    padding: 0.3rem 0.8rem !important;
-    font-size: x-large !important;
-  }
-  .navbar-brand-wrap {
-    display: flex;
-  }
-  .navbar-brand-wrap > .navbar-logo {
-      background: url('@/assets/logo.png') no-repeat scroll 50% 50% /  contain;
-      height: 30px;
-      width: 30px;
-      margin-right: 4px;
-    }
-  @media (min-width: 992px) {
-    .navbar-brand-wrap > .navbar-logo {
-      height: 42px;
-      width: 42px;
-    }
-  }
-  .menu-list {
-    margin: 20px 0 10px 0;
-  }
-  .tags-wrap {
-    margin: 10px 0;
-  }
-  .tag-link {
-    margin: 4px 6px;
-  }
-  .tag-link:hover { opacity: 0.8; }
-  .tag-link:active { opacity: 0.5; }
-</style>
-
 <script>
   export default {
     name: 'NavLayout',
@@ -104,3 +71,36 @@
     }
   }
 </script>
+
+<style>
+  #mainNav .navbar-toggler {
+    padding: 0.3rem 0.8rem !important;
+    font-size: x-large !important;
+  }
+  .navbar-brand-wrap {
+    display: flex;
+  }
+  .navbar-brand-wrap > .navbar-logo {
+      background: url('@/assets/logo.png') no-repeat scroll 50% 50% /  contain;
+      height: 30px;
+      width: 30px;
+      margin-right: 4px;
+    }
+  @media (min-width: 992px) {
+    .navbar-brand-wrap > .navbar-logo {
+      height: 42px;
+      width: 42px;
+    }
+  }
+  .menu-list {
+    margin: 20px 0 10px 0;
+  }
+  .tags-wrap {
+    margin: 10px 0;
+  }
+  .tag-link {
+    margin: 4px 6px;
+  }
+  .tag-link:hover { opacity: 0.8; }
+  .tag-link:active { opacity: 0.5; }
+</style>

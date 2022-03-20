@@ -44,8 +44,10 @@ export default {
 				readOnly: true,
 			},
 			post: {
+				id: "",
 				title: "",
-				content:""
+				content:"",
+				author: "",
 			},
 			coupang: {
 				type: "url",
@@ -94,27 +96,49 @@ export default {
 		},
 		getModalHtml(html) {
 			this.post.content += html;
+
 		},
 		getPostDate() {
 			// title sanitize
 			this.post.title = this.$sanitize(this.post.title);
 			if (!this.post.title) {
 				this.$toast.error("제목을 입력하세요.");
-				return;
+				return false;
 			} else if (!this.post.content) {
 				this.$toast.error("내용을 입력하세요.");
-				return;
+				return false;
 			}
 
 			console.log(this.post);
+			return true
 		},
 		postTempSave() {
-			this.getPostDate();
-			// api 서버로 보내기
+			if(!this.getPostDate()) return;
+
+			this.post.author = localStorage.getItem('userName');
+			this.$axios.post(`/api/post/temp`, this.post)
+			.then(response => {
+				console.log(response);
+				this.$toast.success("임시저장 되었습니다.")
+			})
+			.catch((e) => { 
+				console.error(e)
+				this.$toast.error("임시저장이 실패했습니다.")
+			});
 		},
 		postSave() {
-			this.getPostDate();
-			// api 서버로 보내기
+			if(!this.getPostDate()) return;
+			
+			this.post.author = localStorage.getItem('userName');
+			this.$axios.post(`/api/post`, this.post)
+			.then(response => {
+				console.log(response);
+				this.$toast.success("발행 되었습니다.")
+			})
+			.catch((e) => { 
+				console.error(e)
+				this.$toast.error("발행에 실패했습니다.")
+			});
 		},
 		addTag() {
 			console.log("add tag");

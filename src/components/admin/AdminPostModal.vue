@@ -29,7 +29,8 @@
 						<span v-if="+(deeplinkItem.starRating.replace('%', '')) >= 60">⭐</span>
 						<span v-if="+(deeplinkItem.starRating.replace('%', '')) >= 80">⭐</span>
 						<span v-if="+(deeplinkItem.starRating.replace('%', '')) >= 100">⭐</span>
-						<strong> {{deeplinkItem.count}}</strong>
+						<strong v-if="+(deeplinkItem.count.replace(/\D/g, '')) > 0"> {{deeplinkItem.count}}</strong>
+						<strong v-if="+(deeplinkItem.count.replace(/\D/g, '')) <= 0"> 상품평 없음.</strong>
 					</p>
 				</div>
 				<div id="searchRanking" class="search-ranking" v-if="searchRankingItems !== null">
@@ -58,9 +59,21 @@
 								</a>
 							</p>
 							<p class="ql-align-center">
-								<strong class="ql-size-large">{{p.productPrice ? parseInt(p.productPrice).toLocaleString("ko-KR") : 0}}원</strong>
+								<s v-if="p.extends.discountRate !== '%'" class="ql-size-large" style="color: rgb(136, 136, 136);">{{p.extends.originPrice}}</s>
+								<span v-if="p.extends.discountRate !== '%'" class="ql-size-large" style="color: rgb(136, 136, 136);"> ({{p.extends.discountRate}}) </span>
+								<span v-if="p.extends.discountRate !== '%'" class="ql-size-large">▶</span> <strong class="ql-size-large">{{p.extends.totalPrice}}</strong>
+								<!-- <strong class="ql-size-large">{{p.productPrice ? parseInt(p.productPrice).toLocaleString("ko-KR") : 0}}원</strong> -->
 							</p>
-							<p></p>
+							<p class="ql-align-center">
+								<span v-if="+(p.extends.starRating.replace('%', '')) >= 20">⭐</span>
+								<span v-if="+(p.extends.starRating.replace('%', '')) >= 40">⭐</span>
+								<span v-if="+(p.extends.starRating.replace('%', '')) >= 60">⭐</span>
+								<span v-if="+(p.extends.starRating.replace('%', '')) >= 80">⭐</span>
+								<span v-if="+(p.extends.starRating.replace('%', '')) >= 100">⭐</span>
+								<strong v-if="+(p.extends.count.replace(/\D/g, '')) > 0"> {{p.extends.count}}</strong>
+								<strong v-if="+(p.extends.count.replace(/\D/g, '')) <= 0"> 상품평 없음.</strong>
+							</p>
+							<p><br><br><br></p>
 						</div>
 					</div>
 				</div>
@@ -89,6 +102,7 @@ export default {
 	},
 	methods: {
 		searchCoupangData: function (searchData) {
+			this.$store.commit('onLoading');
 			if (!searchData.type || !searchData.value) {
 				this.$toast.error("입력값이 잘못되었습니다.");
 			}
@@ -112,6 +126,7 @@ export default {
 
 					this.deeplinkItem = res.data.data;
 					this.modalOpen = true;
+					this.$store.commit('offLoading');
 				})
 				.catch(e => { console.log(e); })
 		},
@@ -126,6 +141,7 @@ export default {
 					this.searchRankingItems = res.data.data;
 					this.modalOpen = true;
 					console.log(res.data.data);
+					this.$store.commit('offLoading');
 				})
 				.catch(e => { console.log(e); })
 		},

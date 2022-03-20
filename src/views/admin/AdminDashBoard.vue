@@ -1,13 +1,18 @@
 <template>
 	<div class="admin-dashbord-container container h-100">
-		<ul class="nav nav-tabs">
-			<li class="nav-item">
-				<a :class="`fw-bold nav-link ${tabIndex === 1 ? 'active' : ''}`" @click="tabIndex = 1" href="#">포스팅</a>
-			</li>
-			<li class="nav-item">
-				<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
-			</li>
-		</ul>
+		<div class="d-flex justify-content-between">
+			<ul class="nav nav-tabs" style="width: calc(100% - 100px);">
+				<li class="nav-item">
+					<a :class="`fw-bold nav-link ${tabIndex === 1 ? 'active' : ''}`" @click="tabIndex = 1" href="#">포스팅</a>
+				</li>
+				<li class="nav-item">
+					<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
+				</li>
+			</ul>
+			<button class="btn btn-sm btn-secondary" @click="logout">
+				<i class="bi bi-box-arrow-right"></i> 로그아웃
+			</button>
+		</div>
 		<div class="manage-warp row" v-if="tabIndex === 1">
 			<div class="manage-container col-4 h-100">
 				<AdminPostList @sendPostId="setSelectedPostId" />
@@ -72,6 +77,9 @@ export default {
 			this.modalHtml = html;
 			this.$refs.AdminPostDetail.getModalHtml(html);
 			this.modalHtml = null;
+		},
+		logout() {
+			this.$router.push({ name: 'adminLogout' })
 		}
 	},
 	components: {
