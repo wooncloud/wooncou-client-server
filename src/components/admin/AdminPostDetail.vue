@@ -48,6 +48,7 @@ export default {
 				title: "",
 				content:"",
 				author: "",
+				tags: [],
 			},
 			coupang: {
 				type: "url",
@@ -141,7 +142,7 @@ export default {
 			});
 		},
 		addTag() {
-			console.log("add tag");
+			this.$emit("editPostTags", this.post.tags);
 		}
 	},
 }

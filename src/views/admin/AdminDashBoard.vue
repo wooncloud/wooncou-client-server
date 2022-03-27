@@ -8,6 +8,9 @@
 				<li class="nav-item">
 					<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
 				</li>
+				<li class="nav-item">
+					<a :class="`fw-bold nav-link ${tabIndex === 3 ? 'active' : ''}`" @click="tabIndex = 3" href="#">태그</a>
+				</li>
 			</ul>
 			<button class="btn btn-sm btn-secondary" @click="logout">
 				<i class="bi bi-box-arrow-right"></i> 로그아웃
@@ -22,6 +25,7 @@
 					:selectedPostId="selectedPostId"
 					ref="AdminPostDetail"
 					@sendCoupangApiData="setCoupangApiSearchData"
+					@editPostTags="editPostTags"
 				/>
 			</div>
 		</div>
@@ -33,11 +37,15 @@
 				<AdminReportDetail :selectedReportId="selectedReportId" />
 			</div>
 		</div>
+		<div class="manage-warp row" v-if="tabIndex === 3">
+			<div>tag</div>
+		</div>
 		<div>
 			<AdminPostModal 
 				@sendModalHtml="setModalHtml"
 				ref="refModal"
 			/>
+			<AdminTagModal ref="refTagModal" />
 		</div>
 	</div>
 </template>
@@ -48,6 +56,7 @@ import AdminPostDetail from "@/components/admin/AdminPostDetail.vue"
 import AdminReportList from "@/components/admin/AdminReportList.vue"
 import AdminReportDetail from "@/components/admin/AdminReportDetail.vue"
 import AdminPostModal from "@/components/admin/AdminPostModal.vue"
+import AdminTagModal from "@/components/admin/AdminTagModal.vue"
 
 export default {
 	name: 'AdminDashBoard',
@@ -78,6 +87,9 @@ export default {
 			this.$refs.AdminPostDetail.getModalHtml(html);
 			this.modalHtml = null;
 		},
+		editPostTags(tags) {
+			this.$refs.refTagModal.openModal(tags);
+		},
 		logout() {
 			this.$router.push({ name: 'adminLogout' })
 		}
@@ -88,6 +100,7 @@ export default {
 		AdminReportList,
 		AdminReportDetail,
 		AdminPostModal,
+		AdminTagModal,
 	}
 }
 </script>
