@@ -41,11 +41,8 @@
 			<div>tag</div>
 		</div>
 		<div>
-			<AdminPostModal 
-				@sendModalHtml="setModalHtml"
-				ref="refModal"
-			/>
-			<AdminTagModal ref="refTagModal" />
+			<AdminPostModal @sendModalHtml="setModalHtml" ref="refModal" />
+			<AdminTagModal @sendTags="setTags" ref="refTagModal" />
 		</div>
 	</div>
 </template>
@@ -69,12 +66,14 @@ export default {
 		}
 	},
 	methods: {
+		// list
 		setSelectedPostId(postId) {
 			this.selectedPostId = postId;
 		},
 		setSelectedReportId(reportId) {
 			this.selectedReportId = reportId;
 		},
+		// CoupangApi
 		setCoupangApiSearchData(data) {
 			if(!data.value) {
 				this.$toast.warning("내용을 입력하세요.");
@@ -87,9 +86,14 @@ export default {
 			this.$refs.AdminPostDetail.getModalHtml(html);
 			this.modalHtml = null;
 		},
+		// tags
 		editPostTags(tags) {
 			this.$refs.refTagModal.openModal(tags);
 		},
+		setTags(tags) {
+			this.$refs.AdminPostDetail.getTags(tags);
+		},
+		// etc
 		logout() {
 			this.$router.push({ name: 'adminLogout' })
 		}

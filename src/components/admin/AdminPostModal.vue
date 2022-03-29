@@ -121,7 +121,9 @@ export default {
 			this.$axios.post(`/api/coupang/deeplink`, data)
 				.then(res => {
 					if (!res.data.success) {
-						this.$toast.error(res.data.message); return;
+						this.$toast.error(res.data.message); 
+						this.$store.commit('offLoading');
+						return;
 					}
 
 					this.deeplinkItem = res.data.data;
@@ -135,7 +137,9 @@ export default {
 			this.$axios.get(`/api/coupang/search?keyword=${value}`)
 				.then(res => {
 					if (!res.data.success) {
-						this.$toast.error(res.data.message); return;
+						this.$toast.error(res.data.message); 
+						this.$store.commit('offLoading');
+						return;
 					}
 
 					this.searchRankingItems = res.data.data;

@@ -1,7 +1,9 @@
 <template>
 	<div class="post-list-container h-100">
 		<div class="post-list-controller bg-secondary text-white">
-			<button type="button" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i></button>
+			<button type="button" class="btn btn-primary btn-sm" @click="newPost">
+				<i class="bi bi-plus"></i>
+			</button>
 			<input class="form-control form-control-sm" type="text" placeholder="search..." style="width: 150px;"
 				@keyup="getSearchList" v-model="search">
 		</div>
@@ -67,6 +69,9 @@ export default {
 		sendPostId: function(e, id) {
 			e.preventDefault();
 			this.$emit('sendPostId', id)
+		},
+		newPost(e) {
+			this.$emit('sendPostId', null)
 		}
 	},
 	beforeCreate() {

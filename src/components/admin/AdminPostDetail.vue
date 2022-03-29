@@ -65,13 +65,23 @@ export default {
 				if (!confirm("작성중인 글이 모두 지워집니다.\n계속 하시겠습니까?")) return;
 			}
 
-			this.$axios.get(`/api/post?id=${this.selectedPostId}`)
-			.then(res => {
-				this.post = res.data.posts;
-			})
-			.catch(e => {
-				console.log(e);
-			})
+			if (!this.selectedPostId) {
+				this.post = {
+					id: "",
+					title: "",
+					content:"",
+					author: "",
+					tags: [],
+				}
+			} else {
+				this.$axios.get(`/api/post?id=${this.selectedPostId}`)
+				.then(res => {
+					this.post = res.data.posts;
+				})
+				.catch(e => {
+					console.log(e);
+				})
+			}
 		}
 	},
 	beforeCreate() {
@@ -79,13 +89,13 @@ export default {
 	},
 	methods: {
 		onEditorBlur(editor) {
-			console.log('editor blur!', editor)
+			// console.log('editor blur!', editor)
 		},
 		onEditorFocus(editor) {
-			console.log('editor focus!', editor)
+			// console.log('editor focus!', editor)
 		},
 		onEditorReady(editor) {
-			console.log('editor ready!', editor)
+			// console.log('editor ready!', editor)
 		},
 		coupangSearch: function() {
 			const httpRegex = new RegExp(/^http\w:\/\//, 'ig');
@@ -97,7 +107,9 @@ export default {
 		},
 		getModalHtml(html) {
 			this.post.content += html;
-
+		},
+		getTags(tags) {
+			this.post.tags = tags;
 		},
 		getPostDate() {
 			// title sanitize
@@ -109,23 +121,34 @@ export default {
 				this.$toast.error("내용을 입력하세요.");
 				return false;
 			}
-
-			console.log(this.post);
-			return true
+			return true;
 		},
 		postTempSave() {
 			if(!this.getPostDate()) return;
 
 			this.post.author = localStorage.getItem('userName');
-			this.$axios.post(`/api/post/temp`, this.post)
-			.then(response => {
-				console.log(response);
-				this.$toast.success("임시저장 되었습니다.")
-			})
-			.catch((e) => { 
-				console.error(e)
-				this.$toast.error("임시저장이 실패했습니다.")
-			});
+
+			if(this.post._id) {
+				this.$axios.put(`/api/post/temp`, this.post)
+				.then(response => {
+					console.log(response);
+					this.$toast.success("임시저장 되었습니다.")
+				})
+				.catch((e) => { 
+					console.error(e)
+					this.$toast.error("임시저장이 실패했습니다.")
+				});
+			} else {
+				this.$axios.post(`/api/post/temp`, this.post)
+				.then(response => {
+					console.log(response);
+					this.$toast.success("임시저장 되었습니다.")
+				})
+				.catch((e) => { 
+					console.error(e)
+					this.$toast.error("임시저장이 실패했습니다.")
+				});
+			}
 		},
 		postSave() {
 			if(!this.getPostDate()) return;
