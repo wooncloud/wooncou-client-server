@@ -10,10 +10,9 @@
 				<input type="button" value="검색" class="btn btn-sm btn-dark" @click="coupangSearch()">
 			</div>
 			<div class="btn-group editor-controller" role="group" aria-label="Basic mixed styles example">
-				<button type="button" class="btn btn-sm btn-light" @click="addTag"><i class="bi bi-tag-fill"></i> 태그추가</button>
+				<button type="button" class="btn btn-sm btn-light" @click="addTag"><i class="bi bi-tag-fill"></i> 태그</button>
 				<button type="button" class="btn btn-sm btn-warning" @click="postTempSave"><i class="bi bi-save2"></i> 임시저장</button>
-				<button type="button" class="btn btn-sm btn-primary" @click="postSave" v-if="true"><i class="bi bi-send-fill"></i> 발행</button>
-				<button type="button" class="btn btn-sm btn-primary" @click="postSave" v-if="false"><i class="bi bi-pencil-square"></i> 수정</button>
+				<button type="button" class="btn btn-sm btn-primary" @click="postSave"><i class="bi bi-send-fill"></i> 발행</button>
 			</div>
 		</div>
 		<div class="post-detail-title">
@@ -33,7 +32,6 @@
 </template>
 
 <script>
-
 export default {
 	name: "AdminPostDetail",
 	data: () => {
@@ -75,12 +73,8 @@ export default {
 				}
 			} else {
 				this.$axios.get(`/api/post?id=${this.selectedPostId}`)
-				.then(res => {
-					this.post = res.data.posts;
-				})
-				.catch(e => {
-					console.log(e);
-				})
+				.then(res => { this.post = res.data.posts; })
+				.catch(e => { console.log(e); })
 			}
 		}
 	},
@@ -125,25 +119,18 @@ export default {
 		},
 		postTempSave() {
 			if(!this.getPostDate()) return;
-
 			this.post.author = localStorage.getItem('userName');
 
 			if(this.post._id) {
 				this.$axios.put(`/api/post/temp`, this.post)
-				.then(response => {
-					console.log(response);
-					this.$toast.success("임시저장 되었습니다.")
-				})
+				.then(res => { this.$toast.success("임시저장 되었습니다.") })
 				.catch((e) => { 
 					console.error(e)
 					this.$toast.error("임시저장이 실패했습니다.")
 				});
 			} else {
 				this.$axios.post(`/api/post/temp`, this.post)
-				.then(response => {
-					console.log(response);
-					this.$toast.success("임시저장 되었습니다.")
-				})
+				.then(res => { this.$toast.success("임시저장 되었습니다.") })
 				.catch((e) => { 
 					console.error(e)
 					this.$toast.error("임시저장이 실패했습니다.")
@@ -152,17 +139,23 @@ export default {
 		},
 		postSave() {
 			if(!this.getPostDate()) return;
-			
 			this.post.author = localStorage.getItem('userName');
-			this.$axios.post(`/api/post`, this.post)
-			.then(response => {
-				console.log(response);
-				this.$toast.success("발행 되었습니다.")
-			})
-			.catch((e) => { 
-				console.error(e)
-				this.$toast.error("발행에 실패했습니다.")
-			});
+
+			if(this.post._id) {
+				this.$axios.put(`/api/post`, this.post)
+				.then(res => { this.$toast.success("발행 되었습니다.") })
+				.catch((e) => { 
+					console.error(e)
+					this.$toast.error("발행에 실패했습니다.")
+				});
+			} else {
+				this.$axios.post(`/api/post`, this.post)
+				.then(res => { this.$toast.success("발행 되었습니다.") })
+				.catch((e) => { 
+					console.error(e)
+					this.$toast.error("발행에 실패했습니다.")
+				});
+			}
 		},
 		addTag() {
 			this.$emit("editPostTags", this.post.tags);

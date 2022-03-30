@@ -8,9 +8,6 @@
 				<li class="nav-item">
 					<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
 				</li>
-				<li class="nav-item">
-					<a :class="`fw-bold nav-link ${tabIndex === 3 ? 'active' : ''}`" @click="tabIndex = 3" href="#">태그</a>
-				</li>
 			</ul>
 			<button class="btn btn-sm btn-secondary" @click="logout">
 				<i class="bi bi-box-arrow-right"></i> 로그아웃
@@ -36,9 +33,6 @@
 			<div class="manage-container col-8 h-100">
 				<AdminReportDetail :selectedReportId="selectedReportId" />
 			</div>
-		</div>
-		<div class="manage-warp row" v-if="tabIndex === 3">
-			<div>tag</div>
 		</div>
 		<div>
 			<AdminPostModal @sendModalHtml="setModalHtml" ref="refModal" />
