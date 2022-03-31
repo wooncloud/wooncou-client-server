@@ -104,7 +104,7 @@ export default {
 		searchCoupangData: function (searchData) {
 			this.$store.commit('onLoading');
 			if (!searchData.type || !searchData.value) {
-				this.$toast.error("입력값이 잘못되었습니다.");
+				this.$swal(this.$swalt("error", "입력값이 잘못되었습니다."))
 			}
 
 			if (searchData.type === "search") {
@@ -121,7 +121,7 @@ export default {
 			this.$axios.post(`/api/coupang/deeplink`, data)
 				.then(res => {
 					if (!res.data.success) {
-						this.$toast.error(res.data.message); 
+						this.$swal(this.$swalt("error", res.data.message))
 						this.$store.commit('offLoading');
 						return;
 					}
@@ -137,7 +137,7 @@ export default {
 			this.$axios.get(`/api/coupang/search?keyword=${value}`)
 				.then(res => {
 					if (!res.data.success) {
-						this.$toast.error(res.data.message); 
+						this.$swal(this.$swalt("error", res.data.message))
 						this.$store.commit('offLoading');
 						return;
 					}

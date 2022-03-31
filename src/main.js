@@ -7,9 +7,6 @@ import Bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 // axios
 import axios from 'axios'
-// toast
-import toastr from "toastr/build/toastr.min.js"
-import "toastr/build/toastr.css"
 
 // Quill
 import VueQuillEditor from 'vue-quill-editor'
@@ -19,37 +16,25 @@ import 'quill/dist/quill.snow.css'
 // XSS filter
 import sanitizeHtml from 'sanitize-html'
 
+// sweetalert2
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import toast from './plugins/toast';
+
 import '@/assets/css/styles.css'
 import '@/assets/css/main.css'
 
-toastr.options = {
-  "closeButton": true,
-  "debug": false,
-  "newestOnTop": true,
-  "progressBar": true,
-  "positionClass": "toast-top-right",
-  "preventDuplicates": true,
-  "onclick": null,
-  "showDuration": "100",
-  "hideDuration": "100",
-  "timeOut": "3000",
-  "extendedTimeOut": "1000",
-  "showEasing": "swing",
-  "hideEasing": "linear",
-  "showMethod": "fadeIn",
-  "hideMethod": "fadeOut"
-}
-
 Vue.use(Bootstrap)
 Vue.prototype.$axios = axios
-Vue.prototype.$toast = toastr
 Vue.prototype.$sanitize = sanitizeHtml
 Vue.use(VueQuillEditor)
+Vue.use(VueSweetalert2)
+Vue.use(toast)
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

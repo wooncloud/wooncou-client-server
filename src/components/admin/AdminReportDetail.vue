@@ -70,7 +70,7 @@ export default {
         .then(res => {
           if (res.data.success) {
 						this.isCanComplete = false;
-						this.$toast.success('변경이 완료되었습니다.')
+						this.$swal(this.$swalt("success", "변경이 완료되었습니다."))
           }
         })
         .catch(e => {

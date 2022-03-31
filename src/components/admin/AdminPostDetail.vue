@@ -10,6 +10,7 @@
 				<input type="button" value="검색" class="btn btn-sm btn-dark" @click="coupangSearch()">
 			</div>
 			<div class="btn-group editor-controller" role="group" aria-label="Basic mixed styles example">
+				<button type="button" class="btn btn-sm btn-light" @click="addTitleImage"><i class="bi bi-image"></i> 대표이미지</button>
 				<button type="button" class="btn btn-sm btn-light" @click="addTag"><i class="bi bi-tag-fill"></i> 태그</button>
 				<button type="button" class="btn btn-sm btn-warning" @click="postTempSave"><i class="bi bi-save2"></i> 임시저장</button>
 				<button type="button" class="btn btn-sm btn-primary" @click="postSave"><i class="bi bi-send-fill"></i> 발행</button>
@@ -79,7 +80,6 @@ export default {
 		}
 	},
 	beforeCreate() {
-
 	},
 	methods: {
 		onEditorBlur(editor) {
@@ -109,10 +109,10 @@ export default {
 			// title sanitize
 			this.post.title = this.$sanitize(this.post.title);
 			if (!this.post.title) {
-				this.$toast.error("제목을 입력하세요.");
+				this.$swal(this.$swalt("warning", "제목을 입력하세요."))
 				return false;
 			} else if (!this.post.content) {
-				this.$toast.error("내용을 입력하세요.");
+				this.$swal(this.$swalt("warning", "내용을 입력하세요."))
 				return false;
 			}
 			return true;
@@ -123,17 +123,18 @@ export default {
 
 			if(this.post._id) {
 				this.$axios.put(`/api/post/temp`, this.post)
-				.then(res => { this.$toast.success("임시저장 되었습니다.") })
+				.then(res => { this.$swal(this.$swalt("success", "임시저장 되었습니다.")) })
+				this.$swal(this.$swalt("", ""))
 				.catch((e) => { 
 					console.error(e)
-					this.$toast.error("임시저장이 실패했습니다.")
+					this.$swal(this.$swalt("error", "임시저장이 실패했습니다."))
 				});
 			} else {
 				this.$axios.post(`/api/post/temp`, this.post)
-				.then(res => { this.$toast.success("임시저장 되었습니다.") })
+				.then(res => { this.$swal(this.$swalt("success", "임시저장 되었습니다.")) })
 				.catch((e) => { 
 					console.error(e)
-					this.$toast.error("임시저장이 실패했습니다.")
+					this.$swal(this.$swalt("error", "임시저장이 실패했습니다."))
 				});
 			}
 		},
@@ -143,24 +144,52 @@ export default {
 
 			if(this.post._id) {
 				this.$axios.put(`/api/post`, this.post)
-				.then(res => { this.$toast.success("발행 되었습니다.") })
+				.then(res => { this.$swal(this.$swalt("success", "발행 되었습니다.")) })
 				.catch((e) => { 
 					console.error(e)
-					this.$toast.error("발행에 실패했습니다.")
+					this.$swal(this.$swalt("error", "발행에 실패했습니다."))
 				});
 			} else {
 				this.$axios.post(`/api/post`, this.post)
-				.then(res => { this.$toast.success("발행 되었습니다.") })
+				.then(res => { this.$swal(this.$swalt("success", "발행 되었습니다.")) })
 				.catch((e) => { 
 					console.error(e)
-					this.$toast.error("발행에 실패했습니다.")
+					this.$swal(this.$swalt("error", "발행에 실패했습니다."))
 				});
 			}
 		},
 		addTag() {
 			this.$emit("editPostTags", this.post.tags);
-		}
-	},
+		},
+		addTitleImage() {
+			this.$swal({
+				title: '대표이미지 등록',
+				text: "등록할 이미지의 url을 입력하세요.",
+				imageUrl: this.post.title_image,
+				imageHeight: "400px",
+				input: 'text',
+				showCancelButton: true,
+			})
+			.then((result) => {
+				if (result.isConfirmed) {
+					const tempImg = result.value;
+					this.$swal({
+						title: '이미지 확인',
+						text: '이 이미지가 맞으면 OK를 눌러주세요.',
+						imageUrl: tempImg,
+						imageHeight: "400px",
+						showCancelButton: true,
+					})
+					.then((result) => {
+						if (result.isConfirmed) {
+							this.post.title_image = tempImg;
+							this.$swal(this.$swalt("success", "반영 되었습니다."))
+						}
+					});
+				};
+			});
+		},
+	}
 }
 </script>
 

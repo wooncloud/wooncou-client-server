@@ -70,7 +70,7 @@ export default {
 		// CoupangApi
 		setCoupangApiSearchData(data) {
 			if(!data.value) {
-				this.$toast.warning("내용을 입력하세요.");
+				this.$swal(this.$swalt("warning", "내용을 입력하세요."))
 				return;
 			}
 			this.$refs.refModal.searchCoupangData(data);

@@ -70,7 +70,7 @@ export default {
 			this.$axios.get("/api/tags")
 			.then(res => {
 				if(!res.data.success) {
-					this.$toast.error(res.data.message); return;
+					this.$swal(this.$swalt("error", res.data.message)); return;
 				}
 				this.tags = res.data.tags;
 			})
@@ -84,9 +84,9 @@ export default {
 				this.$axios.post("/api/tags", data)
 				.then(res => {
 					if (res.data.message){
-						this.$toast.error(res.data.message);
+						this.$swal(this.$swalt("error", res.data.message));
 					} else {
-						this.$toast.success("태그가 추가 되었습니다.");
+						this.$swal(this.$swalt("success", "태그가 추가 되었습니다."))
 						this.tagInputValue = "";
 						this.getTagList();scroll
 					}
