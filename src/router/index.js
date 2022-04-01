@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 
 // componenets
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/Home.vue'
 import PostList from '../views/PostList.vue'
 import Report from '../views/Report.vue'
 import Detail from '../views/Detail.vue'
@@ -18,7 +18,7 @@ const routes = [
   { // 홈페이지
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: Home,
   },
   { // 로그인
     path: '/admin/login',

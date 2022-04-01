@@ -60,3 +60,8 @@ div::-webkit-scrollbar-track {
 .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
 	margin-top: -9px !important;
 }
+
+.wooncou-card {
+	border: 1px solid #eee;
+	border-radius: 4px;
+}

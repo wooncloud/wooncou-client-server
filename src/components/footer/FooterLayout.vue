@@ -1,5 +1,6 @@
 <template>
-  <footer class="footer mt-auto py-3 bg-light">
+<div class="mt-auto">
+  <footer class="footer py-3 bg-light">
     <div class="container">
       <div>
         <span class="text-muted">
@@ -11,6 +12,7 @@
       </div>
     </div>
   </footer>
+</div>
 </template>
 
 <script>
@@ -25,6 +27,7 @@ export default {
 
 <style>
   .footer {
+    margin-top: 50px !important;
     border-top: 1px solid #eee;
     font-size: small;
   }
