@@ -1,17 +1,15 @@
 <template>
-<div class="wooncou-card card-lh1">
-  <div class="card-picture" :style="`background-image: url(${title_img})`"></div>
-  <div class="card-content">
-    <div class="card-title">
-			<a href="#">test</a>
-    </div>
-    <div class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non.</div>
-    <div class="card-tags">
-			<span class="badge bg-primary mx-1">1</span>
-			<span class="badge bg-primary mx-1">2</span>
-			<span class="badge bg-primary mx-1">3</span>
+<div class="wooncou-card card-lh1" v-if="data" :data-id="`${data._id}`">
+  <a href="#">
+		<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
+		<div class="card-content">
+			<div class="card-title">{{data.title}}</div>
+			<div class="card-text">{{data.content}}</div>
+			<div class="card-tags">
+				<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
+			</div>
 		</div>
-  </div>
+	</a>
 </div>
 </template>
 
@@ -19,10 +17,7 @@
 export default {
   name: "CardLH1",
   props: {
-    title: String,
-    content: String,
-    tags: Object,
-		title_img: String,
+		data: Object
   }
 }
 </script>
@@ -33,7 +28,7 @@ export default {
   position: relative;
 	width: 100%;
 	padding-bottom: 45%;
-	margin: auto;
+	margin: 5px auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -45,7 +40,11 @@ export default {
 	}
 }
 
-.card-lh1 > div {
+.card-lh1 > a {
+	text-decoration: none !important;
+}
+
+.card-lh1 > a > div {
 	width: 50%;
 	position: absolute;
 	top: 0;
@@ -94,5 +93,15 @@ export default {
 
 .card-lh1 .card-tags {
 	display: flex;
+}
+
+@media (min-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+}
+@media (max-width: 425px) {
+
 }
 </style>

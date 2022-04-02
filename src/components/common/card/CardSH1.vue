@@ -1,33 +1,23 @@
 <template>
-<div class="wooncou-card card-sh1">
-  <div class="card-picture" :style="`background-image: url(${title_img})`"></div>
-  <div class="card-content">
-    <div class="card-title">
-      <a href="#">test</a>
-    </div>
-    <div class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non.</div>
-    <div class="card-tags">
-      <span class="badge bg-primary mx-1">1</span>
-      <span class="badge bg-primary mx-1">2</span>
-      <span class="badge bg-primary mx-1">3</span>
-    </div>
-  </div>
+<div class="wooncou-card card-sh1" v-if="data" :data-id="`${data._id}`">
+	<a href="#">
+		<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
+		<div class="card-content">
+			<div class="card-title">{{data.title}}</div>
+			<div class="card-text">{{data.content}}</div>
+			<div class="card-tags">
+				<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
+			</div>
+		</div>
+	</a>
 </div>
 </template>
 
 <script>
 export default {
   name: "CardSH1",
-	data() {
-		return {
-			title_img: "https://img.hankyung.com/photo/202110/99.27898506.1.jpg"
-		}
-	},
   props: {
-    title: String,
-    content: String,
-    tags: Object,
-		// title_img: String,
+		data: Object
   }
 }
 </script>
@@ -37,20 +27,14 @@ export default {
 .card-sh1 {
   position: relative;
 	width: 100%;
-	padding-bottom: 20%;
-	margin: auto;
+	height: 150px;
+	margin: 5px auto;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
-@media (min-width: 992px) {
-	.card-sh1 {
-		width: 70%;
-		padding-bottom: 9%;
-	}
-}
 
-.card-sh1 > div {
+.card-sh1 > a > div {
 	position: absolute;
 	top: 0;
 	height: 100%;
@@ -88,7 +72,8 @@ export default {
 
 .card-sh1 .card-title {
 	color: black !important;
-	font-size: x-large;
+	font-size: 1.5rem;
+	font-size: 2;
 	font-weight: 600;
 	text-decoration: none !important;
 }
@@ -99,9 +84,26 @@ export default {
 	white-space: nowrap; 
 	overflow: hidden; 
 	text-overflow: ellipsis;
+	font-size: 1rem;
 }
 
 .card-sh1 .card-tags {
 	display: flex;
 }
+
+@media (min-width: 992px) {
+
+}
+@media (max-width: 768px) {
+
+}
+@media (max-width: 425px) {
+	.card-sh1 .card-title {
+		font-size: 1.25rem;
+	}
+	.card-sh1 .card-text {
+		font-size: 0.75rem;
+	}
+}
+
 </style>
