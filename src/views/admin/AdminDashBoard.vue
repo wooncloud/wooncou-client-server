@@ -110,7 +110,7 @@ export default {
 
 	.manage-warp {
 		margin: 10px 0;
-		height: calc(100% - 60px);
+		height: calc(100vh - 300px);
 		justify-content: space-between;
 	}
 

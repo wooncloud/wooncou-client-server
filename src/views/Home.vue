@@ -78,7 +78,7 @@ export default {
       this.latest = res.data.main.latest;
     })
     .catch(() => {
-      this.$swal({ type: "error", title: "오류", text: "관리자에게 문의해주세요.", });
+      this.$swal({ icon: "error", title: "오류", text: "관리자에게 문의해주세요.", });
     });
   }
 }
@@ -109,8 +109,9 @@ export default {
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 30px;
-  padding-bottom: 20px;
+  padding-bottom: 5px;
   border-bottom: 1px solid whitesmoke;
+  color: var(--bs-secondary);
 }
 
 .carousel-recommend {

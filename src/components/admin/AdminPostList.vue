@@ -101,6 +101,7 @@ export default {
 
 	.post-list-wrap {
 		overflow: hidden auto;
+		height: calc(100% - 50px);
 	}
 
 	.post-element {

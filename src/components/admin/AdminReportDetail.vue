@@ -87,7 +87,7 @@ export default {
 		border-radius: 4px;
 	}
 
-	.report-title {
+	.report-detail-container .report-title {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -110,7 +110,7 @@ export default {
 		padding-bottom: 5px;
 	}
 
-	.report-content {
+	.report-detail-container .report-content {
 		margin: 5px 0;
 		padding: 0 20px;
 		overflow: hidden auto;
