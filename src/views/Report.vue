@@ -54,6 +54,18 @@ export default {
 	},
 	methods: {
 		sendReport() {
+			if (localStorage.getItem("report_date") !== new Date().toDateString()) {
+				localStorage.setItem("report_date", new Date().toDateString());
+				localStorage.setItem("report_count", 0);
+			} else {
+				if (localStorage.getItem("report_count") <= 5) {
+					localStorage.setItem("report_count", (+localStorage.getItem("report_count")) + 1);
+				} else {
+					this.$swal({ icon: "error", title: "문의량이 많습니다.", text: "이미 많은 문의를 주셨습니다.\n다음에 이용해 주세요.", });
+					return;
+				}
+			}
+
 			// 유효성 검사
 			if (!this.validation()) return;
 
@@ -70,7 +82,6 @@ export default {
 			}
 
 			// 전송
-			console.log(data);
 			this.$axios.post('/api/report', data)
 			.then(res => {
 				if(res.data.success) {
