@@ -31,4 +31,9 @@ export default {
     border-top: 1px solid #eee;
     font-size: small;
   }
+  @media (max-width: 768px) {
+    .footer {
+      text-align: center;
+    }
+  }
 </style>

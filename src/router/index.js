@@ -8,6 +8,7 @@ import PostList from '../views/PostList.vue'
 import Report from '../views/Report.vue'
 import Detail from '../views/Detail.vue'
 import Goldbox from '../views/Goldbox.vue'
+import Tags from '../views/Tags.vue'
 import AdminLogin from '../views/admin/AdminLogin.vue'
 import AdminDashBoard from '../views/admin/AdminDashBoard.vue'
 import NotFound from '../components/error/NotFound.vue'
@@ -63,6 +64,11 @@ const routes = [
     path: '/detail/:id',
     name: 'detail',
     component: Detail,
+  },
+  { // 태그 목록
+    path: '/tags',
+    name: 'tags',
+    component: Tags,
   },
   { // 골드박스
     path: '/goldbox',

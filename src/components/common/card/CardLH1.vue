@@ -81,7 +81,7 @@ export default {
 
 .card-lh1 .card-title {
 	color: black !important;
-	font-size: xx-large;
+	font-size: 1.5rem;
 	font-weight: 600;
 	text-decoration: none !important;
 }
@@ -89,6 +89,12 @@ export default {
 .card-lh1 .card-text {
 	color: dimgray;
 	height: 100%;
+	font-size: 1rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
 }
 
 .card-lh1 .card-tags {
@@ -102,6 +108,11 @@ export default {
 
 }
 @media (max-width: 425px) {
-
+	.card-lh1 .card-title {
+		font-size: 1.25rem;
+	}
+	.card-lh1 .card-text {
+		font-size: 0.75rem;
+	}
 }
 </style>

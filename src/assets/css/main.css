@@ -65,3 +65,11 @@ div::-webkit-scrollbar-track {
 	border: 1px solid #eee;
 	border-radius: 4px;
 }
+
+.common-title {
+	margin: 0 5px 10px 5px;
+	border-bottom: 1px solid lightgray;
+}
+.common-container {
+	padding: 0 20px;
+}
