@@ -53,13 +53,13 @@ export default {
 				return;
 
 			if (this.search === "") {
-				this.$axios.get('/api/post')
+				this.$axios.get('/api/admin/post')
 				.then(response => {
 					this.postList = response.data.posts
 				})
 				.catch(e => {console.log(e)})
 			} else {
-				this.$axios.get(`/api/post?search=${this.search}`)
+				this.$axios.get(`/api/admin/post?search=${this.search}`)
 				.then(response => {
 					this.postList = response.data.posts
 				})
@@ -75,7 +75,7 @@ export default {
 		}
 	},
 	beforeCreate() {
-		this.$axios.get('/api/post')
+		this.$axios.get('/api/admin/post')
 		.then(response => {
 			this.postList = response.data.posts
 		})

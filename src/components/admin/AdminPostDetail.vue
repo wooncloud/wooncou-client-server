@@ -73,7 +73,7 @@ export default {
 					tags: [],
 				}
 			} else {
-				this.$axios.get(`/api/post?id=${this.selectedPostId}`)
+				this.$axios.get(`/api/admin/post?id=${this.selectedPostId}`)
 				.then(res => { this.post = res.data.posts; })
 				.catch(e => { console.log(e); })
 			}

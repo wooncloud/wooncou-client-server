@@ -29,7 +29,7 @@
           </div> -->
           <hr>
           <form class="d-flex">
-            <input class="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search" v-model="search" @keyup="onSearchHandle" />
           </form>
         </div>
       </div>
@@ -58,12 +58,18 @@
           {id: '3', name: '노트북'},
         ],
         right: null,
+        search: "",
       }
     },
     methods: {
       onNavRouterHandler (e, routerName) {
-        e.preventDefault()
+        e.preventDefault();
         this.$router.push({ name: routerName })
+      },
+      onSearchHandle(e) {
+        e.preventDefault();
+        if (e.keyCode !== 13) return;
+        this.$router.push({ name: "posts", query: { search: this.search } })
       }
     },
     beforeCreate() {

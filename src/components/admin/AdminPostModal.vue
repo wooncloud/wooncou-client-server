@@ -35,7 +35,7 @@
 				</div>
 				<div id="searchRanking" class="search-ranking" v-if="searchRankingItems !== null">
 					<div id="nonePostData" class="rank-summary">
-						<div class="rank-summary-item" v-for="(p, i) in searchRankingItems.data.data.productData" :key="i">
+						<div class="rank-summary-item" v-for="(p, i) in searchRankingItems" :key="i">
 							<div class="rank-summary-item-rank">{{p.rank}}</div>
 							<a :href="`${p.productUrl}`" target="_blank">
 								<img :src="p.productImage" :alt="p.productName">
@@ -47,7 +47,7 @@
 						</div>
 					</div>
 					<div id="postData" class="post-data ql-editor">
-						<div class="ranking-post-item" v-for="(p, i) in searchRankingItems.data.data.productData" :key="i">
+						<div class="ranking-post-item" v-for="(p, i) in searchRankingItems" :key="i">
 							<p class="ql-align-center">
 								<a :href="`${p.productUrl}`" target="_blank">
 									<img :src="`${p.productImage}`" style="width: 100%;">
@@ -141,10 +141,8 @@ export default {
 						this.$store.commit('offLoading');
 						return;
 					}
-
-					this.searchRankingItems = res.data.data;
+					this.searchRankingItems = res.data.data.data.productData;
 					this.modalOpen = true;
-					console.log(res.data.data);
 					this.$store.commit('offLoading');
 				})
 				.catch(e => { console.log(e); })

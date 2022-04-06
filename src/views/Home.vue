@@ -23,7 +23,7 @@
   <div id="mainGoldbox" class="main-wrap">
     <div class="main-wrap-title">
       <h1>골드박스</h1>
-      <a href="#" class="btn btn-primary ms-5">더보기</a>
+      <input type="button" class="btn btn-primary ms-5" value="더보기" @click="$router.push({ name: 'goldbox' })" />
     </div>
     <div class="main-wrap-container">
       <CardSV1 v-for="(gb, i) in goldbox" :key="i" :data=gb />
@@ -32,7 +32,7 @@
   <div id="mainMostView" class="main-wrap">
     <div class="main-wrap-title">
       <h1>최다 조회 상품</h1>
-      <a href="#" class="btn btn-primary ms-5">더보기</a>
+      <input type="button" class="btn btn-primary ms-5" value="더보기" @click="$router.push({ name: 'posts' })" />
     </div>
     <div class="main-wrap-container">
       <CardLH1 v-for="(post, i) in mostView" :key="i" :data=post />
@@ -41,7 +41,7 @@
   <div id="mainLatestPost" class="main-wrap">
     <div class="main-wrap-title">
       <h1>최근 등록</h1>
-      <a href="#" class="btn btn-primary ms-5">더보기</a>
+      <input type="button" class="btn btn-primary ms-5" value="더보기" @click="$router.push({ name: 'posts' })" />
     </div>
     <div class="main-wrap-container">
       <CardSH1 v-for="(post, i) in latest" :key="i" :data=post />

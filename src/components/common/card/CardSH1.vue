@@ -1,10 +1,10 @@
 <template>
 <div class="wooncou-card card-sh1" v-if="data" :data-id="`${data._id}`">
-	<a href="#">
+	<a :href="`#`">
 		<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
 		<div class="card-content">
 			<div class="card-title">{{data.title}}</div>
-			<div class="card-text">{{data.content}}</div>
+			<div class="card-text">{{convertContent()}}</div>
 			<div class="card-tags">
 				<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 			</div>
@@ -18,7 +18,14 @@ export default {
   name: "CardSH1",
   props: {
 		data: Object
-  }
+  },
+	methods: {
+		convertContent() {
+			let temp = document.createElement("div");
+			temp.innerHTML = this.data.content;
+			return temp.textContent;
+		}
+	}
 }
 </script>
 
@@ -72,7 +79,7 @@ export default {
 
 .card-sh1 .card-title {
 	color: black !important;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 	font-size: 2;
 	font-weight: 600;
 	text-decoration: none !important;
@@ -84,7 +91,7 @@ export default {
 	white-space: nowrap; 
 	overflow: hidden; 
 	text-overflow: ellipsis;
-	font-size: 1rem;
+	font-size: 0.75rem;
 }
 
 .card-sh1 .card-tags {
@@ -92,14 +99,28 @@ export default {
 }
 
 @media (min-width: 992px) {
-
+	.card-sh1 {
+		width: calc(50% - 10px);
+		margin: 5px 5px;
+	}
+	.card-sh1 .card-title {
+		font-size: 1rem;
+	}
+	.card-sh1 .card-text {
+		font-size: 0.75rem;
+	}
 }
 @media (max-width: 768px) {
-
+	.card-sh1 .card-title {
+		font-size: 1.25rem;
+	}
+	.card-sh1 .card-text {
+		font-size: 0.75rem;
+	}
 }
 @media (max-width: 425px) {
 	.card-sh1 .card-title {
-		font-size: 1.25rem;
+		font-size: 1rem;
 	}
 	.card-sh1 .card-text {
 		font-size: 0.75rem;
