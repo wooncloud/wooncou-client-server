@@ -56,7 +56,7 @@ const routes = [
     component: Report,
   },
   { // 리스트
-    path: '/posts/:tag',
+    path: '/posts/:tag*',
     name: 'posts',
     component: PostList,
   },

@@ -90,7 +90,7 @@ export default {
 		border-radius: 4px;
 	}
 
-	.post-list-controller {
+	.post-list-container > .post-list-controller {
 		padding: 8px 12px;
 		border-bottom: 1px solid lightgray;
 		background-color: whitesmoke;
@@ -99,19 +99,19 @@ export default {
 		justify-content: space-between;
 	}
 
-	.post-list-wrap {
+	.post-list-container > .post-list-wrap {
 		overflow: hidden auto;
 		height: calc(100% - 50px);
 	}
 
-	.post-element {
+	.post-list-container > .post-list-wrap > .post-element {
 		border-bottom: 1px solid lightgray;
 		padding: 2px 4px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
-	.post-element:nth-child(2n-1) {
+	.post-list-container > .post-list-wrap > .post-element:nth-child(2n-1) {
 		background-color: whitesmoke;
 	}
 </style>

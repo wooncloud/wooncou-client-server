@@ -100,7 +100,6 @@ export default {
 
 @media (min-width: 992px) {
 	.card-sh1 {
-		width: calc(50% - 10px);
 		margin: 5px 5px;
 	}
 	.card-sh1 .card-title {

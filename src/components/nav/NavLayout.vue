@@ -20,17 +20,10 @@
               <a class="nav-link" href="#" @click="onNavRouterHandler($event, menu.name)">{{menu.title}}</a>
             </li>
           </ul>
-          <!-- <div class="tags-wrap">
-            <a href="#" class="tag-link" v-for="(tag) in tags" :key="tag.id">
-              <span class="badge bg-primary" >
-                # {{tag.name}}
-              </span>
-            </a>
-          </div> -->
           <hr>
-          <form class="d-flex">
-            <input class="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search" v-model="search" @keyup="onSearchHandle" />
-          </form>
+          <div class="d-flex">
+            <input type="text" class="form-control form-control-sm me-2" placeholder="검색.." v-model="search" @keyup="onSearchHandle" />
+          </div>
         </div>
       </div>
     </nav>
@@ -48,7 +41,7 @@
         },
         menus: [
           {name: "posts", title: "추천목록 보기"},
-          {name: "tags", title: "태그 목록"},
+          // {name: "tags", title: "태그 목록"},
           {name: "goldbox", title: "골드박스"},
           {name: "report", title: "문의"},
         ],
@@ -67,14 +60,10 @@
         this.$router.push({ name: routerName })
       },
       onSearchHandle(e) {
-        e.preventDefault();
         if (e.keyCode !== 13) return;
         this.$router.push({ name: "posts", query: { search: this.search } })
       }
     },
-    beforeCreate() {
-      console.log("인기 태그 20개만 불러오기");
-    }
   }
 </script>
 

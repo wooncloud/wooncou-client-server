@@ -1,5 +1,5 @@
 <template>
-	<span :class="`tag-item badge rounded-pill ${setColor()}`">
+	<span :class="`tag-item badge rounded-pill ${setColor()}`" @click="tagRoute">
 		{{tagName}}
 		<a v-if="isCloseButton" href="#" @click="remove">
 			&nbsp;<i class="bi bi-x-circle-fill"></i>
@@ -33,7 +33,11 @@ export default {
 			return returnColor;
 		},
 		remove: function(e) {
+			e.preventDefault();
 			e.target.closest('.tag-item').remove();
+		},
+		tagRoute: function() {
+			this.$router.push({ name: "posts", params: { tag: this.tagName } })
 		}
 	}
 }
