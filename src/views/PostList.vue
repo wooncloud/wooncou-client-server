@@ -1,12 +1,12 @@
 <template>
 <div class="post-tag-container">
   <div class="tags-wrap">
-    <a href="" v-for="(tag, i) in tagList" :key="i">
-      <CommonTag :tagName=tag.tag_name />
-    </a>
+    <CommonTag :tagName=tag.tag_name v-for="(tag, i) in tagList" :key="i" />
   </div>
   <div class="post-list-wrap">
-    <CardSH1 v-for="(post, i) in posts" :key="i" :data="post" />
+    <div class="post-element-wrap" v-for="(post, i) in posts" :key="i" :data-id="`${post._id}`" @click="postMove">
+      <CardSH1 :data="post" />
+    </div>
   </div>
 </div>
 </template>
@@ -26,6 +26,12 @@ export default {
     CardSH1,
     CommonTag,
   },
+  methods: {
+    postMove: function (e) {
+      const id = e.target.closest(".post-element-wrap").dataset.id;
+			this.$router.push({ name: "detail", params: { id: id } })
+    }
+  },
   beforeCreate() {
 		let postParam = "";
 		if (this.$route.params.tag) {
@@ -38,8 +44,6 @@ export default {
 		if (postParam != "") {
 			postParam = "?" + postParam;
 		}
-		console.log(this.$route);
-		console.log(postParam);
 
     this.$axios.get(`/api/post${postParam}`)
       .then(res => {
@@ -100,7 +104,7 @@ export default {
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
-	.post-tag-container>.post-list-wrap .wooncou-card.card-sh1 {
+	.post-tag-container>.post-list-wrap .post-element-wrap {
 		width: calc(50% - 10px);
 		margin: 5px;
 	}
