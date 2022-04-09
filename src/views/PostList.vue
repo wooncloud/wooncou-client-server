@@ -1,7 +1,9 @@
 <template>
 <div class="post-tag-container">
   <div class="tags-wrap">
-    <CommonTag :tagName=tag.tag_name v-for="(tag, i) in tagList" :key="i" />
+    <div class="tag-element-wrap" v-for="(tag, i) in tagList" :key="i" @click="onTagClick">
+      <CommonTag :tagName=tag.tag_name />
+    </div>
   </div>
   <div class="post-list-wrap">
     <div class="post-element-wrap" v-for="(post, i) in posts" :key="i" :data-id="`${post._id}`" @click="postMove">
@@ -30,6 +32,20 @@ export default {
     postMove: function (e) {
       const id = e.target.closest(".post-element-wrap").dataset.id;
 			this.$router.push({ name: "detail", params: { id: id } })
+    },
+    onTagClick: function (e) {
+      const tagName = e.target.innerText;
+      this.getPosts(`tag=${tagName}`);
+    },
+    getPosts: function(query) {
+      this.$axios.get(`/api/post?${query}`)
+      .then(res => {
+        this.posts = res.data.posts;
+      })
+      .catch(this.printErrorSwal);
+    },
+    printErrorSwal: function() {
+        this.$swal({ icon: "error", title: "오류", text: "관리자에게 문의해주세요." });
     }
   },
   beforeCreate() {
@@ -46,36 +62,24 @@ export default {
 		}
 
     this.$axios.get(`/api/post${postParam}`)
-      .then(res => {
-        this.posts = res.data.posts;
-      })
-      .catch(() => {
-        this.$swal({
-          icon: "error",
-          title: "오류",
-          text: "관리자에게 문의해주세요.",
-        });
-      });
+    .then(res => {
+      this.posts = res.data.posts;
+    })
+    .catch(this.printErrorSwal);
 
     this.$axios.get("/api/tags")
-      .then(res => {
-        if (res.data.success) {
-          this.tagList = res.data.tags;
-        } else {
-          this.$swal({
-            icon: "error",
-            title: "조회 오류.",
-            text: "태그를 가져올수 없습니다.",
-          });
-        }
-      })
-      .catch(() => {
+    .then(res => {
+      if (res.data.success) {
+        this.tagList = res.data.tags;
+      } else {
         this.$swal({
           icon: "error",
-          title: "오류",
-          text: "관리자에게 문의해주세요.",
+          title: "조회 오류.",
+          text: "태그를 가져올수 없습니다.",
         });
-      });
+      }
+    })
+    .catch(this.printErrorSwal);
   }
 }
 </script>
