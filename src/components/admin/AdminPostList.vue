@@ -17,18 +17,24 @@
 					<label class="form-check-label" :for="`deleted-${post._id}`"></label>
 				</div>
 			</div>
+			<infinite-loading @infinite="infiniteHandler"></infinite-loading>
 		</div>
 	</div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
 export default {
 	name: "AdminPostList",
 	data: () => {
 		return {
 			postList: null,
 			search: "",
+			page: 2,
 		}
+	},
+	components: {
+		InfiniteLoading
 	},
 	methods: {
 		getPostDeleteCheck: function(deleted) {
@@ -72,7 +78,19 @@ export default {
 		},
 		newPost(e) {
 			this.$emit('sendPostId', null)
-		}
+		},
+		infiniteHandler: function($state) {
+      this.$axios.get('/api/admin/post', { params: { page: this.page }})
+      .then(({ data }) => {
+        if (data.posts.length) {
+          this.page += 1;
+          this.postList.push(...data.posts);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      });
+    },
 	},
 	beforeCreate() {
 		this.$axios.get('/api/admin/post')

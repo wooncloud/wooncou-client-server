@@ -3,7 +3,7 @@
 		<div class="common-title">
 			<h1>{{post.title}}</h1>
 		</div>
-		<div class="common-container">
+		<div class="common-container detail-post-container">
 			<div id="postContent" class="ql-editor"></div>
 		</div>
 	</div>
@@ -37,5 +37,7 @@ export default {
 </script>
 
 <style>
-
+	.detail-post-container > .ql-editor img {
+		width: 100%;
+	}
 </style>

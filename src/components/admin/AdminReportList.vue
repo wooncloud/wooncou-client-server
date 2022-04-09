@@ -7,27 +7,46 @@
       <div v-if="reportList[index].complete_date !== null"><i class="bi bi-check-lg"></i></div>
     </div>
   </div>
+  <infinite-loading @infinite="infiniteHandler" />
 </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading';
 export default {
   name: "AdminReportList",
   data() {
     return {
       reportList: null,
+      page: 1,
     }
+  },
+  components: {
+    InfiniteLoading
   },
   methods: {
     sendReportId: function(e, id) {
       e.preventDefault();
       this.$emit('sendReportId', id);
-    }
+    },
+    infiniteHandler: function($state) {
+      this.$axios.get('/api/report', { params: { page: this.page }})
+      .then(({ data }) => {
+        if (data.reports.length) {
+          this.page += 1;
+          this.reportList.push(...data.reports);
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      });
+    },
   },
   beforeCreate() {
     this.$axios.get('/api/report')
 			.then(res => {
-				this.reportList = res.data.reports
+				this.reportList = res.data.reports;
+        this.page += 1;
 			})
 			.catch(e => {
 				console.log(e)

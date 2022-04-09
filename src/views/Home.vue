@@ -35,7 +35,9 @@
       <input type="button" class="btn btn-primary ms-5" value="더보기" @click="$router.push({ name: 'posts' })" />
     </div>
     <div class="main-wrap-container">
-      <CardLH1 v-for="(post, i) in mostView" :key="i" :data=post />
+      <router-link class="card-element" v-for="(post, i) in mostView" :key="i" tag="div" :to="`detail/${post._id}`">
+        <CardLH1 :data=post />
+      </router-link>
     </div>
   </div>
   <div id="mainLatestPost" class="main-wrap">
@@ -44,7 +46,9 @@
       <input type="button" class="btn btn-primary ms-5" value="더보기" @click="$router.push({ name: 'posts' })" />
     </div>
     <div class="main-wrap-container">
-      <CardSH1 v-for="(post, i) in latest" :key="i" :data=post />
+      <router-link class="card-element" v-for="(post, i) in latest" :key="i" tag="div" :to="`detail/${post._id}`">
+        <CardSH1 :data=post />
+      </router-link>
     </div>
   </div>
 </div>
@@ -102,6 +106,11 @@ export default {
   align-content: center;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.main-wrap-container > .card-element {
+  width: 100%;
+  cursor: pointer;
 }
 
 .main-wrap-title {

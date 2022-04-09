@@ -22,7 +22,8 @@
           </ul>
           <hr>
           <div class="d-flex">
-            <input type="text" class="form-control form-control-sm me-2" placeholder="검색.." v-model="search" @keyup="onSearchHandle" />
+            <iframe src="https://coupa.ng/cctif9" width="100%" height="36" frameborder="0" scrolling="no" referrerpolicy="unsafe-url"></iframe>
+            <!-- <input type="text" class="form-control form-control-sm me-2" placeholder="쿠팡 상품 검색..🔍" v-model="search" @keyup="onSearchHandle" /> -->
           </div>
         </div>
       </div>
@@ -61,7 +62,7 @@
       },
       onSearchHandle(e) {
         if (e.keyCode !== 13) return;
-        this.$router.push({ name: "posts", query: { search: this.search } })
+        this.$router.replace({ name: "posts", query: { search: this.search } })
       }
     },
   }

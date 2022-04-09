@@ -1,15 +1,13 @@
 <template>
-<div class="wooncou-card card-sh1" v-if="data" :data-id="`${data._id}`">
-	<a :href="`#`">
-		<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
-		<div class="card-content">
-			<div class="card-title">{{data.title}}</div>
-			<div class="card-text">{{convertContent()}}</div>
-			<div class="card-tags">
-				<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
-			</div>
+<div class="wooncou-card card-sh1" v-if="data">
+	<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
+	<div class="card-content">
+		<div class="card-title">{{data.title}}</div>
+		<div class="card-text">{{convertContent()}}</div>
+		<div class="card-tags">
+			<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 		</div>
-	</a>
+	</div>
 </div>
 </template>
 
@@ -41,7 +39,7 @@ export default {
 	align-items: center;
 }
 
-.card-sh1 > a > div {
+.card-sh1 > div {
 	position: absolute;
 	top: 0;
 	height: 100%;

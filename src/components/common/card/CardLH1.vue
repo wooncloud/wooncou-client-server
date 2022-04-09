@@ -1,15 +1,13 @@
 <template>
 <div class="wooncou-card card-lh1" v-if="data" :data-id="`${data._id}`">
-  <a href="#">
-		<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
-		<div class="card-content">
-			<div class="card-title">{{data.title}}</div>
-			<div class="card-text">{{data.content}}</div>
-			<div class="card-tags">
-				<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
-			</div>
+	<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
+	<div class="card-content">
+		<div class="card-title">{{data.title}}</div>
+		<div class="card-text">{{data.content}}</div>
+		<div class="card-tags">
+			<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 		</div>
-	</a>
+	</div>
 </div>
 </template>
 
@@ -40,11 +38,7 @@ export default {
 	}
 }
 
-.card-lh1 > a {
-	text-decoration: none !important;
-}
-
-.card-lh1 > a > div {
+.card-lh1 > div {
 	width: 50%;
 	position: absolute;
 	top: 0;
