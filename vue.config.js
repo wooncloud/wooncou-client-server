@@ -1,4 +1,3 @@
-const config = require('./src/config/key');
 module.exports = {
   pages: {
     index: {
@@ -11,8 +10,10 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'https://wooncou.herokuapp.com',
-        changeOrigin: true
+        target: process.env.VUE_APP_API_URI,
+        changeOrigin: true,
+        secure:false,
+        logLevel: 'debug' 
       }
     }
   },
