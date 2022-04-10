@@ -1,3 +1,4 @@
+const config = require('./src/config/key');
 module.exports = {
   pages: {
     index: {
@@ -10,7 +11,7 @@ module.exports = {
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://wooncou.herokuapp.com',
         changeOrigin: true
       }
     }
