@@ -7,6 +7,7 @@ import Bootstrap from 'bootstrap/dist/js/bootstrap.bundle'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 // axios
 import axios from 'axios'
+axios.defaults.baseURL = process.env.VUE_APP_API_URI;
 
 // Quill
 import VueQuillEditor from 'vue-quill-editor'
