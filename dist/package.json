@@ -1,0 +1,10 @@
+{
+	"name": "wooncou",
+	"version": "1.0.0",
+	"description": "wooncou client",
+	"author": "wooncloud",
+	"private": true,
+	"scripts": {
+		"postinstall": "npm install express"
+	}
+}
