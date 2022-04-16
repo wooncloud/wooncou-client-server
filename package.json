@@ -7,8 +7,7 @@
     "build": "vue-cli-service build",
     "dev": "npm run serve",
     "dist": "serve -s dist",
-    "deploy": "firebase deploy",
-    "heroku_deploy": "git subtree push --prefix dist heroku master"
+    "deploy": "firebase deploy"
   },
   "author": "wooncloud",
   "license": "ISC",
