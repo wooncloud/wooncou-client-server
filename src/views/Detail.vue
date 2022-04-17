@@ -13,9 +13,16 @@
 <script>
 export default {
 	name: "Detail",
+	metaInfo: {
+    title: '추천 & 가이드 & 팁 컬렉션',
+    titleTemplate: '운쿠 :: %s',
+    link: [
+      {rel: 'canonical', href: 'https://wooncou.com/detail/'}
+    ]
+  },
 	data() {
 		return{
-			post: {}
+			post: {},
 		}
 	},
 	beforeCreate() {

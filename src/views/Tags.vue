@@ -18,6 +18,13 @@
 import CommonTag from "@/components/common/CommonTag.vue"
 export default {
 	name: "tags",
+	metaInfo: {
+    title: '태그',
+    titleTemplate: '운쿠 :: %s',
+		link: [
+      {rel: 'canonical', href: 'https://wooncou.com/tags'}
+    ]
+  },
 	data() {
 		return {
 			tagList: null

@@ -19,6 +19,7 @@
     "sanitize-html": "^2.7.0",
     "vue": "^2.6.14",
     "vue-infinite-loading": "^2.4.5",
+    "vue-meta": "^2.4.0",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.5.1",
     "vue-sweetalert2": "^5.0.2",
@@ -28,6 +29,7 @@
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
+    "prerender-spa-plugin": "^3.4.0",
     "vue-template-compiler": "^2.6.14"
   },
   "browserslist": [

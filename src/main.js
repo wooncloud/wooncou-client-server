@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Meta from 'vue-meta';
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -28,6 +29,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import '@/assets/css/styles.css'
 import '@/assets/css/main.css'
 
+Vue.use(Meta);
 Vue.use(Bootstrap)
 Vue.prototype.$axios = axios
 Vue.prototype.$sanitize = sanitizeHtml

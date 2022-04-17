@@ -33,6 +33,13 @@
 <script>
 export default {
 	name: "Report",
+	metaInfo: {
+		title: '문의하기',
+		titleTemplate: '운쿠 :: %s',
+		link: [
+      {rel: 'canonical', href: 'https://wooncou.com/report'}
+    ]
+	},
 	data() {
 		return {
 			user_name: "",
@@ -48,9 +55,6 @@ export default {
 				this.isNotEmail = !this.$store.getters.REGEX_EMAIL.test(this.user_email);
 			}
 		},
-		content() {
-
-		}
 	},
 	methods: {
 		sendReport() {

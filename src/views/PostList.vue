@@ -27,6 +27,13 @@ import CommonTag from "@/components/common/CommonTag.vue"
 import CardSH1 from '@/components/common/card/CardSH1.vue'
 export default {
   name: "PostList",
+  metaInfo: {
+    title: '추천 목록',
+    titleTemplate: '운쿠 :: %s',
+    link: [
+      {rel: 'canonical', href: 'https://wooncou.com/posts'}
+    ]
+  },
   data() {
     return {
       posts: null,

@@ -16,6 +16,13 @@
 import CardSV1 from '@/components/common/card/CardSV1.vue'
 export default {
   name: "Goldbox",
+  metaInfo: {
+    title: '골드박스',
+    titleTemplate: '운쿠 :: %s',
+    link: [
+      {rel: 'canonical', href: 'https://wooncou.com/goldbox'}
+    ]
+  },
   data() {
     return {
       goldbox: null,

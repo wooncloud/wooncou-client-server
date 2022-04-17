@@ -63,6 +63,13 @@ import CardSH1 from '@/components/common/card/CardSH1.vue'
 import CardSV1 from '@/components/common/card/CardSV1.vue'
 export default {
   name: "Home",
+  metaInfo: {
+    title: '추천 & 가이드 & 팁 컬렉션',
+    titleTemplate: '운쿠 :: %s',
+    link: [
+      {rel: 'canonical', href: 'https://wooncou.com/'}
+    ]
+  },
   data() {
     return {
       goldbox: null,
