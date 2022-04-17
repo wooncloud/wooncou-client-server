@@ -141,7 +141,7 @@ export default {
 		flex-direction: row;
 		flex-wrap: wrap;
 	}
-	.post-tag-container .post-list-wrap .post-element-wrap {
+	.post-tag-container .post-list-wrap > div {
 		width: calc(50% - 10px);
 		margin: 5px;
 	}

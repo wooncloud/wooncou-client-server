@@ -4,6 +4,7 @@
 			<h1>{{post.title}}</h1>
 		</div>
 		<div class="common-container detail-post-container">
+			<div class="coupang-partners-label text-center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
 			<div id="postContent" class="ql-editor"></div>
 		</div>
 	</div>
@@ -39,5 +40,11 @@ export default {
 <style>
 	.detail-post-container > .ql-editor img {
 		width: 100%;
+	}
+
+  @media (min-width: 992px) {
+		.detail-post-container > .ql-editor img {
+			width: 50%;
+		}
 	}
 </style>

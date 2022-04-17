@@ -1,4 +1,10 @@
-input:focus, select:focus, option:focus, textarea:focus, button:focus{
+/* --------------------------------------- common --------------------------------------- */
+
+input:focus,
+select:focus,
+option:focus,
+textarea:focus,
+button:focus {
 	outline: none;
 }
 
@@ -6,17 +12,18 @@ input:focus, select:focus, option:focus, textarea:focus, button:focus{
 	height: 100vh !important;
 }
 
-input, div {
+input,
+div {
 	transition: all 0.1s ease-out;
 }
 
 .ellipsis {
-	white-space: nowrap; 
-	overflow: hidden; 
+	white-space: nowrap;
+	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-/* scrollbar */
+/* --------------------------------------- scrollbar --------------------------------------- */
 html::-webkit-scrollbar {
 	width: 10px;
 }
@@ -46,7 +53,7 @@ div::-webkit-scrollbar-track {
 	background-color: transparent;
 }
 
-/* quill */
+/* --------------------------------------- quill --------------------------------------- */
 .ql-toolbar.ql-snow {
 	border: 0 !important;
 	border-top: 1px solid lightgray !important;
@@ -70,6 +77,23 @@ div::-webkit-scrollbar-track {
 	margin: 0 5px 10px 5px;
 	border-bottom: 1px solid lightgray;
 }
+
 .common-container {
 	padding: 0 20px;
+}
+
+/* --------------------------------------- wooncou --------------------------------------- */
+.coupang-partners-label {
+	font-size: small;
+	color: gray;
+	font-weight: bold;
+	font-style: italic;
+}
+
+.carousel-recommend .carousel-inner .carousel-item .carousel-caption {
+	background-size: contain;
+}
+.carousel-caption > div {
+	background-color: #0005;
+	padding: 20px;
 }

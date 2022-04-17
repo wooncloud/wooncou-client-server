@@ -5,8 +5,10 @@
       <div class="carousel-inner">
         <div v-for="(post, i) in mostView" :key="i" :class="`carousel-item ${i === 0 ? 'active': ''}`">
           <div class="carousel-caption d-none d-md-block" :style="`background-image: url(${post.title_image})`">
-            <h5>{{post.title}}</h5>
-            <p>{{post.content}}</p>
+            <div>
+              <h5>{{post.title}}</h5>
+              <p>{{convertContent(post.content)}}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -67,6 +69,13 @@ export default {
       mostView: null,
       latest: null,
     }
+  },
+  methods: {
+    convertContent(content) {
+			let temp = document.createElement("div");
+			temp.innerHTML = content;
+			return temp.textContent;
+		}
   },
   components: {
     CardLH1,
