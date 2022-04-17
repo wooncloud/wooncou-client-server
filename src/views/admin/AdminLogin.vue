@@ -68,7 +68,7 @@ export default {
         password: this.pw
       }
 
-      this.$axios.post('/api/users/login', data)
+      this.$axios.post('/api/users/login', data, {withCredentials: true})
         .then(response => {
           if (response.status === 200) {
             if (response.data.loginSuccess) {

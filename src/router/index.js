@@ -91,7 +91,7 @@ const router = new VueRouter({
 // 로그인 체크
 function checkToken(next) {
   const token = localStorage.getItem('accessToken')
-  axios.get('/api/users/auth')
+  axios.get('/api/users/auth', {withCredentials: true})
     .then(res => {
       if (res.status === 200 && res.data._id === token) {
         next()
