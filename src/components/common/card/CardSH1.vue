@@ -22,7 +22,7 @@ export default {
 			let temp = document.createElement("div");
       content = content.replaceAll("<br>", "@@");
 			temp.innerHTML = content;
-			temp.textContent = temp.textContent.replace(/@@/ig, ' ').substring(0, 97) + "...";
+			temp.textContent = temp.textContent.replace(/@@/ig, ' ').substring(0, 47) + "...";
 			return temp.textContent;
 		}
 	}
