@@ -6,9 +6,10 @@ wooncou client server
 
 # Env
 
+- nodejs
+- AWS Lightsail
+- mongoDB
 - vuejs 3
-- firebase host
-- mongodb
 - bootstrap
 
 # connect
@@ -18,4 +19,4 @@ wooncou client server
 
 # Site
 
-[Go to wooncou](https://wooncou.web.app/)
+[Go to wooncou](https://wooncou.com/)
