@@ -5,6 +5,7 @@
 		</div>
 		<div class="common-container detail-post-container">
 			<div class="coupang-partners-label text-center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
+			<div class="coupang-partners-label text-center">작성일로부터 일부 내용은 변경될 수 있습니다.</div>
 			<div id="postContent" class="ql-editor"></div>
 		</div>
 	</div>

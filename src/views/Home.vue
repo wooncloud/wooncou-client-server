@@ -7,7 +7,7 @@
           <div class="carousel-caption d-none d-md-block" :style="`background-image: url(${post.title_image})`">
             <div>
               <h5>{{post.title}}</h5>
-              <p>{{convertContent(post.content)}}</p>
+              <p class="ellipsis2">{{convertContent(post.content)}}</p>
             </div>
           </div>
         </div>
@@ -80,7 +80,9 @@ export default {
   methods: {
     convertContent(content) {
 			let temp = document.createElement("div");
+      content = content.replaceAll("<br>", "@@");
 			temp.innerHTML = content;
+      temp.textContent = temp.textContent.replace(/@@/ig, ' ')
 			return temp.textContent;
 		}
   },

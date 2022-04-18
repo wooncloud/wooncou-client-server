@@ -3,7 +3,7 @@
 	<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
 	<div class="card-content">
 		<div class="card-title">{{data.title}}</div>
-		<div class="card-text">{{convertContent()}}</div>
+		<div class="card-text">{{convertContent(data.content)}}</div>
 		<div class="card-tags">
 			<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 		</div>
@@ -18,9 +18,11 @@ export default {
 		data: Object
   },
 	methods: {
-		convertContent() {
+		convertContent(content) {
 			let temp = document.createElement("div");
-			temp.innerHTML = this.data.content;
+      content = content.replaceAll("<br>", "@@");
+			temp.innerHTML = content;
+			temp.textContent = temp.textContent.replace(/@@/ig, ' ').substring(0, 97) + "...";
 			return temp.textContent;
 		}
 	}
@@ -86,9 +88,6 @@ export default {
 .card-sh1 .card-text {
 	color: dimgray;
 	height: 100%;
-	white-space: nowrap; 
-	overflow: hidden; 
-	text-overflow: ellipsis;
 	font-size: 0.75rem;
 }
 

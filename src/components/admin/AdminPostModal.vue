@@ -9,8 +9,8 @@
 			<div class="modal-body">
 				<div id="deeplink" class="deeplink ql-editor" v-if="deeplinkItem !== null">
 					<p class="ql-align-center">
-						<a :href="`${deeplinkItem.link}`" target="_blank">
-							<img :src="`${deeplinkItem.images[0]}`" style="width: 100%;">
+						<a v-for="(img, i) in deeplinkItem.images" :key="i" :href="`${deeplinkItem.link}`" target="_blank">
+							<img :src="`${img}`" style="width: 100%;">
 						</a>
 					</p>
 					<p class="ql-align-center">
@@ -32,6 +32,17 @@
 						<strong v-if="+(deeplinkItem.count.replace(/\D/g, '')) > 0"> {{deeplinkItem.count}}</strong>
 						<strong v-if="+(deeplinkItem.count.replace(/\D/g, '')) <= 0"> 상품평 없음.</strong>
 					</p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
+					<p class="ql-align-center"><br></p>
 				</div>
 				<div id="searchRanking" class="search-ranking" v-if="searchRankingItems !== null">
 					<div id="nonePostData" class="rank-summary">
@@ -73,7 +84,17 @@
 								<strong v-if="+(p.extends.count.replace(/\D/g, '')) > 0"> {{p.extends.count}}</strong>
 								<strong v-if="+(p.extends.count.replace(/\D/g, '')) <= 0"> 상품평 없음.</strong>
 							</p>
-							<p><br><br><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
+							<p class="ql-align-center"><br></p>
 						</div>
 					</div>
 				</div>

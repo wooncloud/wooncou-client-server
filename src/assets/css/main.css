@@ -23,6 +23,14 @@ div {
 	text-overflow: ellipsis;
 }
 
+.ellipsis2 {
+	overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
 /* --------------------------------------- scrollbar --------------------------------------- */
 html::-webkit-scrollbar {
 	width: 10px;
@@ -91,9 +99,15 @@ div::-webkit-scrollbar-track {
 }
 
 .carousel-recommend .carousel-inner .carousel-item .carousel-caption {
-	background-size: contain;
+	background-size: cover;
+	width: 100%;
+	top: 0;
+	left: 0;
 }
+
 .carousel-caption > div {
-	background-color: #0005;
+	background-color: #000a;
 	padding: 20px;
+	position: absolute;
+	bottom: 0;
 }
