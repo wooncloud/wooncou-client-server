@@ -4,12 +4,14 @@
     <div id="recommendCarousel" class="carousel slide carousel-recommend" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div v-for="(post, i) in mostView" :key="i" :class="`carousel-item ${i === 0 ? 'active': ''}`">
-          <div class="carousel-caption d-none d-md-block" :style="`background-image: url(${post.title_image})`">
-            <div>
-              <h5>{{post.title}}</h5>
-              <p class="ellipsis2">{{convertContent(post.content)}}</p>
+          <router-link tag="div" :to="`detail/${post._id}`">
+            <div class="carousel-caption d-none d-md-block" :style="`background-image: url(${post.title_image})`">
+              <div>
+                <h5>{{post.title}}</h5>
+                <p class="ellipsis2">{{convertContent(post.content)}}</p>
+              </div>
             </div>
-          </div>
+          </router-link>
         </div>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#recommendCarousel" data-bs-slide="prev">

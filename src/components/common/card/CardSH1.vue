@@ -3,7 +3,9 @@
 	<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
 	<div class="card-content">
 		<div class="card-title">{{data.title}}</div>
-		<div class="card-text">{{convertContent(data.content)}}</div>
+		<div class="card-text">
+			<div> {{convertContent(data.content)}} </div>
+		</div>
 		<div class="card-tags">
 			<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 		</div>
@@ -22,7 +24,7 @@ export default {
 			let temp = document.createElement("div");
       content = content.replaceAll("<br>", "@@");
 			temp.innerHTML = content;
-			temp.textContent = temp.textContent.replace(/@@/ig, ' ').substring(0, 47) + "...";
+			temp.textContent = temp.textContent.replace(/@@/ig, ' ').substring(0, 97) + "...";
 			return temp.textContent;
 		}
 	}
@@ -113,6 +115,13 @@ export default {
 	.card-sh1 .card-text {
 		font-size: 0.75rem;
 	}
+	.card-sh1 .card-text > div {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
 }
 @media (max-width: 425px) {
 	.card-sh1 .card-title {
@@ -120,6 +129,15 @@ export default {
 	}
 	.card-sh1 .card-text {
 		font-size: 0.75rem;
+	}
+	.card-sh1 .card-text > div {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+	}
+	.card-sh1 .card-tags {
+		display: none;
 	}
 }
 

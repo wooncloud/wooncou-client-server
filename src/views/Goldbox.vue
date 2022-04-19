@@ -66,4 +66,15 @@ export default {
   justify-content: space-evenly;
   align-items: center;
 }
+
+@media (max-width: 768px) {
+  .goldbox-title {
+    height: 190px;
+  }
+}
+@media (max-width: 576px) {
+  .goldbox-title {
+    height: calc(100vw / 3);
+  }
+}
 </style>

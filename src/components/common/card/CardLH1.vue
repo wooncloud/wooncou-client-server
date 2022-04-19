@@ -3,7 +3,9 @@
 	<div class="card-picture" :style="`background-image: url(${data.title_image})`"></div>
 	<div class="card-content">
 		<div class="card-title">{{data.title}}</div>
-		<div class="card-text">{{convertContent(data.content)}}</div>
+		<div class="card-text">
+			<div> {{convertContent(data.content)}} </div>
+		</div>
 		<div class="card-tags">
 			<span class="badge bg-primary mx-1" v-for="(tag, i) in data.tags" :key="i" :data-id="`${tag._id}`">{{tag.tag_name}}</span>
 		</div>
@@ -99,17 +101,43 @@ export default {
 }
 
 @media (min-width: 992px) {
-
+	.card-lh1 .card-title {
+		font-size: 1.5rem;
+	}
+	.card-lh1 .card-text {
+		font-size: 1rem;
+	}
 }
 @media (max-width: 768px) {
-
-}
-@media (max-width: 425px) {
 	.card-lh1 .card-title {
 		font-size: 1.25rem;
 	}
 	.card-lh1 .card-text {
 		font-size: 0.75rem;
+	}
+	.card-lh1 .card-text > div {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
+@media (max-width: 425px) {
+	.card-lh1 .card-title {
+		font-size: 1rem;
+	}
+	.card-lh1 .card-text {
+		font-size: 0.75rem;
+	}
+	.card-lh1 .card-text > div {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: block;
+	}
+	.card-lh1 .card-tags {
+		display: none;
 	}
 }
 </style>
