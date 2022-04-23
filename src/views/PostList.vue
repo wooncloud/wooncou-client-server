@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="리스트 검색.." v-model="params.search">
+    <input type="text" class="form-control" placeholder="리스트 검색.." v-model="params.search" @keyup="searchEnter">
     <button class="btn btn-primary" type="button" @click="getPosts"><i class="bi bi-search"></i> 검색</button>
     <button class="btn btn-secondary" type="button" @click="searchReset">검색 초기화</button>
   </div>
@@ -64,9 +64,15 @@ export default {
       })
       .catch(() => {this.printErrorSwal()});
     },
+    searchEnter: function(e) {
+      if(e.keyCode === 13) {
+        this.getPosts();
+      }
+    },
     searchReset: function() {
       this.params.search = "";
       this.params.tag = "";
+      this.getPosts();
     },
     printErrorSwal: function() {
       this.$swal({ icon: "error", title: "오류", text: "관리자에게 문의해주세요." });
