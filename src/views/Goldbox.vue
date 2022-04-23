@@ -6,6 +6,9 @@
       <p>🎁 와우 회원 전용 / 1일 특가 할인! 🎁</p> -->
     </div>
   </a>
+  <div class="coupang-partners-label text-center">
+    <p>쿠팡 파트너스 활동의 일환으로 수익이 발생할 수 있습니다. 하지만, 구매자에게 추가 비용이 발생하지는 않습니다.</p>
+  </div>
   <div class="goldbox-container">
     <CardSV1 v-for="(gb, i) in goldbox" :key="i" :data=gb />
   </div>

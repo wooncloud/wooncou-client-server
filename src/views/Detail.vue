@@ -4,13 +4,14 @@
 			<h1>{{post.title}}</h1>
 		</div>
 		<div class="common-container detail-post-container">
-			<div class="coupang-partners-label text-center">이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</div>
-			<div class="coupang-partners-label text-center">작성일로부터 일부 내용은 변경될 수 있습니다.</div>
+			<div class="coupang-partners-label text-center">
+				<p>쿠팡 파트너스 활동의 일환으로 수익이 발생할 수 있습니다. 하지만, 구매자에게 추가 비용이 발생하지는 않습니다.</p>
+				<p>또한, 상품 가격은 시간에 따라 변동이 있을 수 있습니다.</p>
+			</div>
 			<div id="postContent" class="ql-editor"></div>
 		</div>
 	</div>
 </template>
-
 <script>
 export default {
 	name: "Detail",
