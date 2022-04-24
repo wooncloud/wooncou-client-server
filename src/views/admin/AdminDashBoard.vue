@@ -8,6 +8,9 @@
 				<li class="nav-item">
 					<a :class="`fw-bold nav-link ${tabIndex === 2 ? 'active' : ''}`" @click="tabIndex = 2" href="#">문의</a>
 				</li>
+				<li class="nav-item">
+					<a :class="`fw-bold nav-link ${tabIndex === 3 ? 'active' : ''}`" @click="tabIndex = 3" href="#">사이트맵</a>
+				</li>
 			</ul>
 			<button class="btn btn-sm btn-secondary" @click="logout">
 				<i class="bi bi-box-arrow-right"></i> 로그아웃
@@ -34,6 +37,9 @@
 				<AdminReportDetail :selectedReportId="selectedReportId" />
 			</div>
 		</div>
+		<div class="manage-warp row" v-if="tabIndex === 3">
+			<AdminSiteMap />
+		</div>
 		<div>
 			<AdminPostModal @sendModalHtml="setModalHtml" ref="refModal" />
 			<AdminTagModal @sendTags="setTags" ref="refTagModal" />
@@ -48,6 +54,7 @@ import AdminReportList from "@/components/admin/AdminReportList.vue"
 import AdminReportDetail from "@/components/admin/AdminReportDetail.vue"
 import AdminPostModal from "@/components/admin/AdminPostModal.vue"
 import AdminTagModal from "@/components/admin/AdminTagModal.vue"
+import AdminSiteMap from "@/components/admin/AdminSitemap.vue"
 
 export default {
 	name: 'AdminDashBoard',
@@ -99,6 +106,7 @@ export default {
 		AdminReportDetail,
 		AdminPostModal,
 		AdminTagModal,
+		AdminSiteMap,
 	}
 }
 </script>
