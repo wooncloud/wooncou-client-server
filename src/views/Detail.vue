@@ -4,11 +4,11 @@
 			<h1>{{post.title}}</h1>
 		</div>
 		<div class="common-container detail-post-container">
+			<div id="postContent" class="ql-editor"></div>
 			<div class="coupang-partners-label text-center">
 				<p>쿠팡 파트너스 활동의 일환으로 수익이 발생할 수 있습니다. 하지만, 구매자에게 추가 비용이 발생하지는 않습니다.</p>
 				<p>또한, 상품 가격은 시간에 따라 변동이 있을 수 있습니다.</p>
 			</div>
-			<div id="postContent" class="ql-editor"></div>
 		</div>
 	</div>
 </template>
@@ -53,7 +53,10 @@ export default {
 
   @media (min-width: 992px) {
 		.detail-post-container > .ql-editor img {
-			width: 50%;
+			max-width: 40%;
+			width: auto;
+			max-height: 400px;
+			margin: 4px;
 		}
 	}
 </style>
