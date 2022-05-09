@@ -8,9 +8,14 @@
             <div>{{main.title}}</div>
           </div>
         </a>
-        <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="bi bi-list"></i>
-        </button>
+        <div class="d-flex">
+          <button class="font-weight-bold bg-primary text-white rounded share-button border-0 me-1" @click="shareModalVisible = true">
+            <i class="bi bi-share-fill"></i>
+          </button>
+          <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-list"></i>
+          </button>
+        </div>
         <div class="navbar-collapse collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto menu-list">
             <li class="nav-item mx-0 mx-lg-1"
@@ -28,10 +33,12 @@
         </div>
       </div>
     </nav>
+    <ShareModal :visible="shareModalVisible" />
   </header>
 </template>
 
 <script>
+  import ShareModal from '@/components/common/ShareModal.vue'
   export default {
     name: 'NavLayout',
     data: () => {
@@ -53,7 +60,11 @@
         ],
         right: null,
         search: "",
+        shareModalVisible: false,
       }
+    },
+    components: {
+      ShareModal,
     },
     methods: {
       onNavRouterHandler (e, routerName) {
@@ -63,13 +74,14 @@
       onSearchHandle(e) {
         if (e.keyCode !== 13) return;
         this.$router.replace({ name: "posts", query: { search: this.search } })
-      }
+      },
     },
   }
 </script>
 
 <style>
-  #mainNav .navbar-toggler {
+  #mainNav .navbar-toggler,
+  .share-button {
     padding: 0.3rem 0.8rem !important;
     font-size: x-large !important;
   }

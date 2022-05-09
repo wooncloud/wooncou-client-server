@@ -10,7 +10,8 @@ export default new Vuex.Store({
       regex: {
         email : /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,}$/i,
       }
-    }
+    },
+    
   },
   getters: {
     REGEX_EMAIL: state => { return state.constants.regex.email },
