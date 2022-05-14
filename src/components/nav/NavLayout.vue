@@ -3,19 +3,19 @@
     <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand" href="#" @click="onNavRouterHandler($event, main.name)">
-          <div class="navbar-brand-wrap">
-            <div class="navbar-logo"></div>
-            <div>{{main.title}}</div>
+          <div class="d-flex align-items-center">
+            <div class="navbar-brand-wrap">
+              <div class="navbar-logo"></div>
+              <div>{{main.title}}</div>
+            </div>
+            <button class="btn btn-sm btn-outline-light ms-3" @click="shareModalVisible = true">
+              <i class="bi bi-share-fill"></i>
+            </button>
           </div>
         </a>
-        <div class="d-flex">
-          <button class="font-weight-bold bg-primary text-white rounded share-button border-0 me-1" @click="shareModalVisible = true">
-            <i class="bi bi-share-fill"></i>
-          </button>
           <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <i class="bi bi-list"></i>
           </button>
-        </div>
         <div class="navbar-collapse collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto menu-list">
             <li class="nav-item mx-0 mx-lg-1"
