@@ -8,9 +8,6 @@
               <div class="navbar-logo"></div>
               <div>{{main.title}}</div>
             </div>
-            <button class="btn btn-sm btn-outline-light ms-3" @click="shareModalVisible = true">
-              <i class="bi bi-share-fill"></i>
-            </button>
           </div>
         </a>
           <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
